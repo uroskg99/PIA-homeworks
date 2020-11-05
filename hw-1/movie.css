@@ -1,6 +1,7 @@
 * { 
     font-size: 12px;
     font-family: Arial;
+    box-sizing: border-box;
 }
 
 body {
@@ -15,4 +16,42 @@ h1 {
     text-align: center;
     font-family: Georgia;
     text-shadow: 3px 3px #999999;
+}
+
+.naslov {
+    background-image: url('images/rbg.png');
+    color: red;
+}
+
+.naslov1 {
+    font-size: 23px;
+    font-weight: bold;
+    height: 100%;
+}
+
+.cela_sirina {
+    width: 55%;
+    margin: 0 auto;
+}
+
+.cela_sirina:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.leva_kolona {
+    float:left;
+    width: 55%;
+
+}
+
+.desna_kolona {
+    float: left;
+    width: 45%;
+    margin-left: 0;
+}
+
+.siva {
+    background-color:#CCCCCC;
 }
