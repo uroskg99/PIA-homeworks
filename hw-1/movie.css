@@ -77,10 +77,18 @@ h1 {
     border-width: 2px;
     width: 90%;
     padding: 1em;
+    align-self: center;
 }
 
 .critic > img {
     float: left;
+    margin-right: 5px;
+}
+
+.critic {
+    margin-top: 5px;
+    padding-left: 35px;
+    margin-bottom: 20px;
 }
 
 .publication {
