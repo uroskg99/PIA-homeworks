@@ -1,0 +1,12 @@
+body {
+    background-image: url('images/pizza-wallpaper.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+}
+
+.navbar {
+    margin-top: 20px;
+}
+
