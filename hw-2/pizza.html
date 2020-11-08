@@ -6,15 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="pizza.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
     
     <div class="container p-3 my-3">
-
+      <!-- NAVBAR -->
       <nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="#onama">O nama</a>
+            <a class="nav-link" href="#demo">O nama</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Meni</a>
@@ -24,11 +27,45 @@
           </li>
         </ul>
       </nav>
+      <!-- O NAMA -->
+      <div id="demo" class="carousel slide" data-ride="carousel">
+        <ul class="carousel-indicators">
+          <li data-target="#demo" data-slide-to="0" class="active"></li>
+          <li data-target="#demo" data-slide-to="1"></li>
+          <li data-target="#demo" data-slide-to="2"></li>
+        </ul>
 
-      <div id="onama" class="container my-5 bg-dark">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="images/slider1.jpg">
+            <div class="carousel-caption">
+              <h1 id="onama-zaglavlje" class="display-2">O nama</h1>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="images/slider2.jpg">
+            <div class="carousel-caption">
+              <h3 id="onama-opis">Picerija vrhunskog kvaliteta sa vrhunskom uslugom na odlicnoj lokaciji</h3>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="images/slider3.jpg">
+            <div class="carousel-caption">
+              <div class="opis">
+                  <p id="pasus">
+                  Ova picerija se nalazi u samom centru grada, na samo nekoliko desetina metara od mora.
+                  Poznata po vrhunskoj usluzi, ljubaznim konobarima i ukusnoj pici. Preko 50 svetskih poznatih jela,
+                  zajedno sa preko 20 vrsta vina. Uzivajte uz prijatan i romantican ambijent, sa vasim najblizima.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
 
-        
       </div>
+
+
+      <!-- MENI -->
 
     </div>
 
