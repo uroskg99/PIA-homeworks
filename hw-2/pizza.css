@@ -117,8 +117,9 @@ body {
 }
 
 .desno {
-    float: right;
     color: white;
+    float: right;
+    margin-right: 100px;
 }
 
 .navigacija {
