@@ -10,12 +10,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" data-auto-a11y="true"></script>
 </head>
 <body>
     
     <div class="container p-3 my-3 main-container">
       <!-- NAVBAR -->
-      <nav class="navbar navbar-expand-md bg-dark navbar-dark sticky-top">
+      <nav class="navbar navbar-expand-md navbar-dark sticky-top justify-content-center navigacija">
         <ul class="navbar-nav">
           <li class="nav-item">
             <a class="nav-link" href="#demo">O nama</a>
@@ -148,7 +149,7 @@
               <a href="#1" data-toggle="modal" data-target="#mymodal1">
                 <img src="images/kapricoza.jpg" class="slika">
               </a>
-              <p>Capriciossa pizza</p> 
+              <p class="ime-pice">Capriciossa pizza</p> 
             </div>
 
             <div class="pizza">
@@ -225,7 +226,7 @@
               <a href="#1" data-toggle="modal" data-target="#mymodal2">
                 <img src="images/margarita.jpg" class="slika">
               </a>
-              <p>Margharitta pizza</p>
+              <p class="ime-pice">Margharitta pizza</p>
             </div>
 
             <div class="pizza">
@@ -302,7 +303,7 @@
               <a href="#1" data-toggle="modal" data-target="#mymodal3">
                 <img src="images/fungi.jpg" class="slika">
               </a>
-              <p>Fungi Pizza</p>
+              <p class="ime-pice">Fungi Pizza</p>
             </div>
 
           </div>
@@ -383,7 +384,7 @@
               <a href="#1" data-toggle="modal" data-target="#mymodal4">
                 <img src="images/napolitana.jpg" class="slika">
               </a>
-              <p>Napolitana pizza</p>
+              <p class="ime-pice">Napolitana pizza</p>
             </div>
 
             <div class="pizza">
@@ -460,7 +461,7 @@
               <a href="#1" data-toggle="modal" data-target="#mymodal5">
                 <img src="images/quatro-stagione.jpg" class="slika">
               </a>
-              <p>Quatro Stagione Pizza</p>
+              <p class="ime-pice">Quatro Stagione Pizza</p>
             </div>
 
             <div class="pizza">
@@ -540,7 +541,7 @@
               <a href="#1" data-toggle="modal" data-target="#mymodal6">
                 <img src="images/sicilijana.jpg" class="slika">
               </a>
-              <p>Siciliana Pizza</p>
+              <p class="ime-pice">Siciliana Pizza</p>
             </div>
 
           </div>
@@ -550,9 +551,81 @@
 
 
       <!-- KONTAKT FORMA -->
-      
+      <div id="kontakt">
+        <div class="container contact-form">
+          <h1>Contact Form</h1>
+          <hr>
+
+          <div class="row">
+            <div class="col-md-6">
+              <address class="informacije">Via Cesare Sersale, 1, 80139 Napoli NA</address>
+              <p class="informacije">Email - pizzeriadaattillo@gmail.com</p>
+              <p class="informacije">Broj telefona - +39 081 553 9204</p>
+            </div>
+
+            <div class="col-md-6">
+              <form action="#1" class="was-validated">
+                <div class="form-group">
+                  <label>Ime i prezime:</label>
+                  <input type="text" class="form-control" required>
+                  <div class="valid-feedback">Valid.</div>
+                  <div class="invalid-feedback">Please fill out this field.</div>
+                </div>
+
+                <div class="form-group">
+                  <label>Email:</label>
+                  <input type="email" class="form-control" required>
+                  <div class="valid-feedback">Valid.</div>
+                  <div class="invalid-feedback">Please fill out this field.</div>
+                </div>
+
+                <div class="form-group">
+                  <label>Vas broj telefona (opciono):</label>
+                  <input type="text" class="form-control">
+                </div>
+
+                <div class="form-group">
+                  <label>Poruka:</label>
+                  <textarea class="form-control" rows="5" required></textarea>
+                  <div class="valid-feedback">Valid.</div>
+                  <div class="invalid-feedback">Please fill out this field.</div>
+                </div>
+
+                <div class="form-group">
+                  <button class="btn btn-primary btn-block">Posalji</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+      </div>
 
     </div>
+
+    <footer class="page-footer">
+      <div class="container">
+        
+          <div class="row py-4 d-flex align-items-center red-futer">
+
+            <div class="col-xl-12 text-center kolona">
+              <a href="#"><i class="fab fa-facebook-f text-white mr-4"></i></a>
+              <a href="#"><i class="fab fa-twitter text-white mr-4"></i></a>
+              <a href="#"><i class="fab fa-instagram text-white mr-4"></i></a>
+              <span class="desno"><footer>&copy; Copyright Uros Stanojkov</footer>
+              </span>
+            </div>
+          </div>
+        
+      </div>
+
+      
+
+    </footer>
 
 </body>
 </html>
