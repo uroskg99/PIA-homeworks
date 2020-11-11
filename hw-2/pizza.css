@@ -85,9 +85,6 @@ body {
     font-weight: 500;
 }
 
-.form-group {
-    width: 60px;
-}
 
 .labela {
     font-weight: bold;
@@ -99,4 +96,49 @@ body {
 
 .btn-primary:hover {
     background-color: green;
+}
+
+.contact-form {
+    background:rgba(0, 0, 0, .6);
+    color: white;
+    margin-top: 100px;
+    padding: 20px;
+    box-shadow: 0px 0px 10px 3px grey;
+}
+
+.informacije {
+    font-size: 20px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.page-footer {
+    background:rgba(0, 0, 0, .6);
+    margin-top: 70px;
+}
+
+.desno {
+    float: right;
+    color: white;
+}
+
+.navigacija {
+    background:rgba(0, 0, 0, .85);
+    border-radius: 8px;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: red;
+    font-weight: 600;
+    font-size: 16px;
+    text-transform: uppercase;
+}
+
+.kolona {
+    margin-left: 120px;
+}
+
+.ime-pice {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 600;
 }
