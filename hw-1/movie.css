@@ -50,6 +50,7 @@ h1 {
 .leva_kolona {
     float:left;
     width: 75%;
+    background-color: #EEEEEE; 
 }
 
 .desna_kolona {
