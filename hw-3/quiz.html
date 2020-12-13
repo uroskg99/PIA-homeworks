@@ -2,22 +2,20 @@
 <html>
 <head>
     <link rel="stylesheet" href="styles.css">
-    <title>Kviz - III domaci PIA</title>
-    <script src="script.js"></script>
+    <title>Kviz - III domaci PIA</title> 
     <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 </head>
 <body>
     
     <div class="form" id="form">
-        <form>
-            <label class="ime">Unesi svoje ime (Ime i Prezime)*</label><br>
-            <input class="text-input" type="text" id="text-input" placeholder="Ime i prezime" required><br>
-            <button class="dugme" id="submit">Sacuvaj i nastavi dalje</button>
-        </form>
-        <small class="napomena">Polja sa *(zvezdicom su obavezna)</small>
+        <label class="ime">Unesi svoje ime (Ime i Prezime)*</label><br>
+        <input class="text-input" type="text" id="text-input" placeholder="Ime i prezime" required><br>
+        <small class="napomena" id="napomena">Polja sa *(zvezdicom su obavezna)</small>
+        <button class="dugme" id="submit">Sačuvaj i nastavi</button>
+        <small class="napomena-bold">Submitovanjem bićete prebačeni na uputstva kviza</small>
     </div>
 
-
+    <script src="script.js"></script>
 </body>
 </html>
