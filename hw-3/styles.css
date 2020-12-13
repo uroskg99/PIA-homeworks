@@ -18,7 +18,12 @@ body {
     padding: 30px;
     box-shadow: 1px 1px 2px 2px black;
     border-radius: 6px;
-    height: 250px;
+    height: 280px;
+    width: 440px;
+}
+
+.napomena-bold {
+    font-weight: bold;
 }
 
 .ime {
@@ -61,3 +66,6 @@ body {
     border: 2px solid black;
 }
 
+.dugme:focus {
+    outline: none;
+}
