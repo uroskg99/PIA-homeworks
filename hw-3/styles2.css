@@ -1,0 +1,70 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+}
+
+body {
+    background-image: url('images/background.jpg');
+}
+
+.pravilnik {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(221, 217, 212);
+    box-shadow: 1px 1px 2px 2px black;
+    border-radius: 6px;
+    height: 80%;
+    width: 60%;
+    padding-top: 30px;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    color:rgb(84, 84, 228);
+    text-shadow: 1px 1px black;
+}
+
+.lista-pravila {
+    margin-left: 35px;
+    margin-top: 60px;
+}
+
+li {
+    color: rgb(71, 40, 40);
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.dugme-pravila {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 300px;
+    height: 40px;
+    border-radius: 15px;
+    background-color: rgb(84, 84, 228);
+    color: rgb(170, 170, 223);
+    font-weight: bold;
+    font-size: 16px;
+    border: none;
+}
+
+.dugme-pravila:hover {
+    cursor: pointer;
+    border: 2px solid black;
+}
+
+.dugme-pravila:focus {
+    outline: none;
+}
+
+span {
+    color: rgb(84, 84, 228);
+    font-weight: bold;
+}
