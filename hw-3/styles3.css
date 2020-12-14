@@ -35,7 +35,7 @@ h2 {
     gap: 30px;
 }
 
-.odgovori {
+.odgovori, .zapocniIgru {
     border-radius: 15px;
     background-color: rgb(84, 84, 228);
     color: rgb(170, 170, 223);
@@ -46,11 +46,31 @@ h2 {
     width: 100%;
 }
 
-.odgovori:focus {
+.zapocniIgru {
+    width: 50%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.odgovori.tacno {
+    background-color: rgb(5, 173, 5);
+    color: white;
+}
+
+.odgovori.netacno {
+    background-color: rgb(245, 56, 56);
+    color: white;
+}
+
+
+
+.odgovori:focus, .zapocniIgru:focus {
     outline: none;
 }
 
-.odgovori:hover {
+.odgovori:hover, .zapocniIgru:hover {
     cursor: pointer;
     box-shadow: 1px 1px 2px 2px black;
 }
@@ -70,13 +90,20 @@ h2 {
 
 .odustani, .nastavi {
     border-radius: 15px;
-    background-color: rgb(84, 84, 228);
-    color: rgb(170, 170, 223);
+    color: white;
     font-weight: bold;
     font-size: 16px;
     border: none;
     width: 150px;
     height: 35px;
+}
+
+.odustani {
+    background-color: rgb(28, 28, 100);
+}
+
+.nastavi {
+    background-color: rgb(24, 138, 113);
 }
 
 .odustani:hover, .nastavi:hover {
@@ -86,4 +113,8 @@ h2 {
 
 .odustani:focus, .nastavi:focus {
     outline: none;
+}
+
+.sakrij {
+    display: none;
 }
