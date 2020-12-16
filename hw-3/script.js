@@ -101,19 +101,56 @@ const pitanjaJSON = `[
     }
 ]`
 
+const pitanjaJSONunos = `[
+    {
+        "pitanje": "Najvisa planina na svetu je:",
+        "odgovor": "Mont Everest"
+    },
+    {
+        "pitanje": "Kada je poceo Prvi srpski ustanak?",
+        "odgovor": "1804"
+    },
+    {
+        "pitanje": "Dovrsi izreku - Lopta je: ",
+        "odgovor": "okrugla"
+    },
+    {
+        "pitanje": "Ko je sastavio Azbuku?",
+        "odgovor": "Vuk Stefanovic Karadzic"
+    }
+]`
+
 var pitanjaJS = JSON.parse(pitanjaJSON);
+var pitanjaJSunos = JSON.parse(pitanjaJSONunos);
 var mesajPitanja, trenutniIndeksPitanja
+var mesajPitanjaUnos, trenutniIndeksPitanjaUnos
+trenutniIndeksPitanjaUnos = -1;
 var pitanje = document.getElementById('pitanje');
 var ponudjeniOdgovori = document.getElementById('ponudjeni-odgovori');
+var brojPoena = 0;
+
 
 var sledecePitanjeDugme = document.getElementById('nastavi');
 var odustaniDugme = document.getElementById('odustani');
 var zapocniIgru = document.getElementById('zapocniIgru');
+var unos = document.getElementById('unos');
 zapocniIgru.addEventListener('click', pocniIgru);
+
 sledecePitanjeDugme.addEventListener('click', () => {
     trenutniIndeksPitanja++;
-    postaviPitanje();
-})
+    if (trenutniIndeksPitanja < 8){
+        postaviPitanje();
+    } else {
+        nastaviIgruUnos();
+    }
+    if (trenutniIndeksPitanjaUnos == 3){
+        brojPoenaStrana();
+    }
+});
+
+/*function brojPoenaStrana(){
+    window.location.href = "https://www.google.com/"
+}*/
 
 
 function pocniIgru(){
@@ -122,7 +159,6 @@ function pocniIgru(){
     pitanje.classList.remove('sakrij');
     sledecePitanjeDugme.classList.remove('sakrij');
     odustaniDugme.classList.remove('sakrij');
-
     mesajPitanja = pitanjaJS.sort(() => Math.random() - .5);
     trenutniIndeksPitanja = 0;
     postaviPitanje();
@@ -133,10 +169,15 @@ function postaviPitanje(){
     prikaziPitanje(mesajPitanja[trenutniIndeksPitanja]);
 }
 
+
 function restartuj(){
     while (ponudjeniOdgovori.firstChild) {
         ponudjeniOdgovori.removeChild(ponudjeniOdgovori.firstChild);
     }
+}
+
+function restartujUnos(){
+    unos.remove();
 }
 
 function prikaziPitanje(postaviPitanje){
@@ -155,16 +196,19 @@ function prikaziPitanje(postaviPitanje){
 
 function izaberiOdgovor(e){
     const izabranOdgovor = e.target;
-    /*const tacno = izabranOdgovor.dataset.tacno;
+    const tacno = izabranOdgovor.dataset.tacno;
+    if (tacno == "true"){
+        brojPoena++;
+    } 
     Array.from(ponudjeniOdgovori.children).forEach(dugme => {
-        statusOdgovora(dugme, dugme.dataset.tacno);
-    });*/
+        statusOdgovora(dugme, dugme.dataset.tacno); 
+    });
     
 }
 
-/*function statusOdgovora(element, tacno){
+function statusOdgovora(element, tacno){
     ocistiStatus(element);
-    if (tacno){
+    if (tacno == "true"){
         element.classList.add('tacno');
     } else {
         element.classList.add('netacno');
@@ -174,4 +218,22 @@ function izaberiOdgovor(e){
 function ocistiStatus(element){
     element.classList.remove('tacno');
     element.classList.remove('netacno');
-}*/
+}
+
+function nastaviIgruUnos(){
+    ponudjeniOdgovori.classList.add('sakrij');
+    unos.classList.remove('sakrij');
+    mesajPitanjaUnos = pitanjaJSunos.sort(() => Math.random() - .5);
+    trenutniIndeksPitanjaUnos++;
+    postaviPitanjeUnos();
+}
+
+function postaviPitanjeUnos(){
+    restartuj();
+    prikaziPitanjeUnos(mesajPitanjaUnos[trenutniIndeksPitanjaUnos]);
+}
+
+function prikaziPitanjeUnos(postaviPitanje){
+    pitanje.innerText = postaviPitanje.pitanje;
+    const input = document.createElement('input')
+}
