@@ -123,12 +123,13 @@ const pitanjaJSONunos = `[
 var pitanjaJS = JSON.parse(pitanjaJSON);
 var pitanjaJSunos = JSON.parse(pitanjaJSONunos);
 var mesajPitanja, trenutniIndeksPitanja
-var mesajPitanjaUnos, trenutniIndeksPitanjaUnos
+var trenutniIndeksPitanjaUnos;
 trenutniIndeksPitanjaUnos = -1;
 var pitanje = document.getElementById('pitanje');
 var ponudjeniOdgovori = document.getElementById('ponudjeni-odgovori');
 var brojPoena = 0;
-
+var proveriDugme = document.getElementById('proveri');
+const mesajPitanjaUnos = pitanjaJSunos.sort(() => Math.random() - .5);
 
 var sledecePitanjeDugme = document.getElementById('nastavi');
 var odustaniDugme = document.getElementById('odustani');
@@ -138,6 +139,7 @@ zapocniIgru.addEventListener('click', pocniIgru);
 
 sledecePitanjeDugme.addEventListener('click', () => {
     trenutniIndeksPitanja++;
+    console.log(brojPoena);
     if (trenutniIndeksPitanja < 8){
         postaviPitanje();
     } else {
@@ -147,10 +149,6 @@ sledecePitanjeDugme.addEventListener('click', () => {
         brojPoenaStrana();
     }
 });
-
-/*function brojPoenaStrana(){
-    window.location.href = "https://www.google.com/"
-}*/
 
 
 function pocniIgru(){
@@ -174,6 +172,9 @@ function restartuj(){
     while (ponudjeniOdgovori.firstChild) {
         ponudjeniOdgovori.removeChild(ponudjeniOdgovori.firstChild);
     }
+    unos.value = '';
+    unos.classList.remove('tacno');
+    unos.classList.remove('netacno');
 }
 
 function restartujUnos(){
@@ -223,7 +224,7 @@ function ocistiStatus(element){
 function nastaviIgruUnos(){
     ponudjeniOdgovori.classList.add('sakrij');
     unos.classList.remove('sakrij');
-    mesajPitanjaUnos = pitanjaJSunos.sort(() => Math.random() - .5);
+    proveriDugme.classList.remove('sakrij');
     trenutniIndeksPitanjaUnos++;
     postaviPitanjeUnos();
 }
@@ -236,4 +237,17 @@ function postaviPitanjeUnos(){
 function prikaziPitanjeUnos(postaviPitanje){
     pitanje.innerText = postaviPitanje.pitanje;
     const input = document.createElement('input')
+}
+
+proveriDugme.addEventListener('click', proveriOdgovor);
+
+function proveriOdgovor(){
+    var unosTekst = unos.value;
+    if (unosTekst == mesajPitanjaUnos[trenutniIndeksPitanjaUnos]["odgovor"]){
+        unos.classList.add('tacno');
+        brojPoena++;
+    } else {
+        unos.classList.add('netacno');
+        brojPoena++;
+    }
 }
