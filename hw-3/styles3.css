@@ -133,6 +133,30 @@ h2 {
     padding: 10px;
 }
 
+.proveri {
+    position: fixed;
+    left: 50%;
+    top: 70%;
+    transform: translate(-50%, -50%);
+    border-radius: 15px;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    border: none;
+    width: 150px;
+    height: 35px;
+    background-color: rgb(24, 138, 113);
+}
+
+.proveri:focus {
+    outline: none;
+}
+
+.proveri:hover {
+    cursor: pointer;
+    box-shadow: 1px 1px 2px 2px black;
+}
+
 .unos.tacno {
     border: solid 4px rgb(28, 221, 10);
 }
