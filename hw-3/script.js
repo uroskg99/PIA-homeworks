@@ -128,126 +128,175 @@ trenutniIndeksPitanjaUnos = -1;
 var pitanje = document.getElementById('pitanje');
 var ponudjeniOdgovori = document.getElementById('ponudjeni-odgovori');
 var brojPoena = 0;
+var dodaj;
 var proveriDugme = document.getElementById('proveri');
 const mesajPitanjaUnos = pitanjaJSunos.sort(() => Math.random() - .5);
-
+var brojPoenaDiv;
+var ceoDivPitanja = document.getElementById('ceoDivPitanja');
 var sledecePitanjeDugme = document.getElementById('nastavi');
 var odustaniDugme = document.getElementById('odustani');
 var zapocniIgru = document.getElementById('zapocniIgru');
 var unos = document.getElementById('unos');
-zapocniIgru.addEventListener('click', pocniIgru);
-
-sledecePitanjeDugme.addEventListener('click', () => {
-    trenutniIndeksPitanja++;
-    console.log(brojPoena);
-    if (trenutniIndeksPitanja < 8){
-        postaviPitanje();
-    } else {
-        nastaviIgruUnos();
-    }
-    if (trenutniIndeksPitanjaUnos == 3){
-        brojPoenaStrana();
-    }
-});
+konacanBrojPoena = document.getElementById('konacanBrojPoena');
+//konacanBrojPoena.innerHTML = brojPoena;
+if (zapocniIgru){
+    zapocniIgru.addEventListener('click', pocniIgru);
 
 
-function pocniIgru(){
-    zapocniIgru.classList.add('sakrij');
-    ponudjeniOdgovori.classList.remove('sakrij');
-    pitanje.classList.remove('sakrij');
-    sledecePitanjeDugme.classList.remove('sakrij');
-    odustaniDugme.classList.remove('sakrij');
-    mesajPitanja = pitanjaJS.sort(() => Math.random() - .5);
-    trenutniIndeksPitanja = 0;
-    postaviPitanje();
-}
-
-function postaviPitanje(){
-    restartuj();
-    prikaziPitanje(mesajPitanja[trenutniIndeksPitanja]);
-}
 
 
-function restartuj(){
-    while (ponudjeniOdgovori.firstChild) {
-        ponudjeniOdgovori.removeChild(ponudjeniOdgovori.firstChild);
-    }
-    unos.value = '';
-    unos.classList.remove('tacno');
-    unos.classList.remove('netacno');
-}
-
-function restartujUnos(){
-    unos.remove();
-}
-
-function prikaziPitanje(postaviPitanje){
-    pitanje.innerText = postaviPitanje.pitanje;
-    postaviPitanje.odgovori.forEach(odgovor => {
-        const dugme = document.createElement('button');
-        dugme.innerText = odgovor.tekst;
-        dugme.classList.add('odgovori');
-        if (odgovor.tacno) {
-            dugme.dataset.tacno = odgovor.tacno;
+    sledecePitanjeDugme.addEventListener('click', () => {
+        trenutniIndeksPitanja++;
+        if (trenutniIndeksPitanja < 8){
+            postaviPitanje();
+        } else {
+            nastaviIgruUnos();
         }
-        dugme.addEventListener('click', izaberiOdgovor);
-        ponudjeniOdgovori.appendChild(dugme);
+        if (trenutniIndeksPitanjaUnos == 3){
+            //setTimeout(brojPoenaStrana, 20000);
+        }
     });
-}
 
-function izaberiOdgovor(e){
-    const izabranOdgovor = e.target;
-    const tacno = izabranOdgovor.dataset.tacno;
-    if (tacno == "true"){
-        brojPoena++;
-    } 
-    Array.from(ponudjeniOdgovori.children).forEach(dugme => {
-        statusOdgovora(dugme, dugme.dataset.tacno); 
-    });
+    function brojPoenaStrana(){
+        brojPoenaDiv = document.getElementById('brojPoena');
+        brojPoenaDiv.classList.remove('sakrij');
+        ceoDivPitanja.classList.add('sakrij');
+        konacanBrojPoena.innerHTML = brojPoena;
+    }
+
+
+    function pocniIgru(){
+        zapocniIgru.classList.add('sakrij');
+        ponudjeniOdgovori.classList.remove('sakrij');
+        pitanje.classList.remove('sakrij');
+        sledecePitanjeDugme.classList.remove('sakrij');
+        odustaniDugme.classList.remove('sakrij');
+        mesajPitanja = pitanjaJS.sort(() => Math.random() - .5);
+        trenutniIndeksPitanja = 0;
+        postaviPitanje();
+    }
+
+    function postaviPitanje(){
+        restartuj();
+        prikaziPitanje(mesajPitanja[trenutniIndeksPitanja]);
+        setTimeout(vremeIstekaPitanje, 20000);
+    }
+
+
+    function restartuj(){
+        while (ponudjeniOdgovori.firstChild) {
+            ponudjeniOdgovori.removeChild(ponudjeniOdgovori.firstChild);
+        }
+        unos.value = '';
+        unos.classList.remove('tacno');
+        unos.classList.remove('netacno');
+    }
+
+    function restartujUnos(){
+        unos.remove();
+    }
+
+    function prikaziPitanje(postaviPitanje){
+        pitanje.innerText = postaviPitanje.pitanje;
+        postaviPitanje.odgovori.forEach(odgovor => {
+            const dugme = document.createElement('button');
+            dugme.innerText = odgovor.tekst;
+            dugme.classList.add('odgovori');
+            if (odgovor.tacno) {
+                dugme.dataset.tacno = odgovor.tacno;
+            }
+            dugme.addEventListener('click', izaberiOdgovor);
+            ponudjeniOdgovori.appendChild(dugme);
+        });
+    }
+
+    function izaberiOdgovor(e){
+        const izabranOdgovor = e.target;
+        const tacno = izabranOdgovor.dataset.tacno;
+        if (tacno == "true"){
+            brojPoena++;
+        } 
+        Array.from(ponudjeniOdgovori.children).forEach(dugme => {
+            statusOdgovora(dugme, dugme.dataset.tacno); 
+        });
+        
+        if (trenutniIndeksPitanja < 7){
+            setTimeout(postaviPitanje, 2000);
+            trenutniIndeksPitanja++;
+        } else {
+            setTimeout(nastaviIgruUnos, 2000);
+        }
+        
+    }
+
+    function statusOdgovora(element, tacno){
+        ocistiStatus(element);
+        if (tacno == "true"){
+            element.classList.add('tacno');
+        } else {
+            element.classList.add('netacno');
+        }
+    }
+
+    function ocistiStatus(element){
+        element.classList.remove('tacno');
+        element.classList.remove('netacno');
+    }
+
+    function nastaviIgruUnos(){
+        ponudjeniOdgovori.classList.add('sakrij');
+        unos.classList.remove('sakrij');
+        proveriDugme.classList.remove('sakrij');
+        trenutniIndeksPitanjaUnos++;
+        postaviPitanjeUnos();
+    }
+
+    function postaviPitanjeUnos(){
+        restartuj();
+        prikaziPitanjeUnos(mesajPitanjaUnos[trenutniIndeksPitanjaUnos]);
+        setTimeout(vremeIstekaPitanjeUnos, 20000);
+    }
+
+    function prikaziPitanjeUnos(postaviPitanje){
+        pitanje.innerText = postaviPitanje.pitanje;
+        const input = document.createElement('input')
+    }
+
+    proveriDugme.addEventListener('click', proveriOdgovor);
+
+    function proveriOdgovor(){
+        var unosTekst = unos.value;
+        if (unosTekst == mesajPitanjaUnos[trenutniIndeksPitanjaUnos]["odgovor"]){
+            unos.classList.add('tacno');
+            brojPoena++;
+        } else {
+            unos.classList.add('netacno');
+        }
+        if (trenutniIndeksPitanjaUnos < 3){
+            setTimeout(postaviPitanjeUnos, 2000);
+            trenutniIndeksPitanjaUnos++;
+        } else {
+            setTimeout(brojPoenaStrana, 2000);
+            console.log(brojPoena);
+        }
+    }
+
+    function vremeIstekaPitanje(){
+        if (trenutniIndeksPitanja < 7){
+            trenutniIndeksPitanja++;
+            postaviPitanje();
+        } else {
+            nastaviIgruUnos();
+        }
+    }
+
+    function vremeIstekaPitanjeUnos(){
+        if (trenutniIndeksPitanjaUnos < 3){
+            trenutniIndeksPitanjaUnos++;
+            postaviPitanjeUnos();
+        } else {
+            brojPoenaStrana();
+        }
+    }
     
-}
-
-function statusOdgovora(element, tacno){
-    ocistiStatus(element);
-    if (tacno == "true"){
-        element.classList.add('tacno');
-    } else {
-        element.classList.add('netacno');
-    }
-}
-
-function ocistiStatus(element){
-    element.classList.remove('tacno');
-    element.classList.remove('netacno');
-}
-
-function nastaviIgruUnos(){
-    ponudjeniOdgovori.classList.add('sakrij');
-    unos.classList.remove('sakrij');
-    proveriDugme.classList.remove('sakrij');
-    trenutniIndeksPitanjaUnos++;
-    postaviPitanjeUnos();
-}
-
-function postaviPitanjeUnos(){
-    restartuj();
-    prikaziPitanjeUnos(mesajPitanjaUnos[trenutniIndeksPitanjaUnos]);
-}
-
-function prikaziPitanjeUnos(postaviPitanje){
-    pitanje.innerText = postaviPitanje.pitanje;
-    const input = document.createElement('input')
-}
-
-proveriDugme.addEventListener('click', proveriOdgovor);
-
-function proveriOdgovor(){
-    var unosTekst = unos.value;
-    if (unosTekst == mesajPitanjaUnos[trenutniIndeksPitanjaUnos]["odgovor"]){
-        unos.classList.add('tacno');
-        brojPoena++;
-    } else {
-        unos.classList.add('netacno');
-        brojPoena++;
-    }
 }
