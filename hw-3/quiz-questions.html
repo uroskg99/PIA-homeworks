@@ -5,8 +5,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="pitanja">
-        <div class="odgovorUnos">
+    <div class="pitanja" id="ceoDivPitanja">
         <h2 class="sakrij" id="pitanje">Pitanje</h2>
         <input type="text" class="unos sakrij" id="unos" placeholder="Unesi odgovor"><br>
         <button class="proveri sakrij" id="proveri">Proveri odgovor</button>
@@ -24,6 +23,12 @@
         <button class="zapocniIgru" id="zapocniIgru">Zapocni igru</button>
 
     </div>
+
+    <div class="brojPoena sakrij" id="brojPoena">
+        <h2 class="brojPoenaTekst">Cestitamo! Vas broj poena: <span id="konacanBrojPoena"></span></h2>
+    </div>
+
+
 
     <script type="text/javascript" src="script.js"></script>
 </body>
