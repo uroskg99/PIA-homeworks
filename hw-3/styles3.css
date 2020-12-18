@@ -164,3 +164,23 @@ h2 {
 .unos.netacno {
     border: solid 4px red;
 }
+
+.brojPoena {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(221, 217, 212);
+    box-shadow: 1px 1px 2px 2px black;
+    border-radius: 6px;
+    height: 25%;
+    width: 50%;
+    text-align: center;
+}
+
+.brojPoenaTekst {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
