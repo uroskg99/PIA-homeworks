@@ -28,7 +28,7 @@ function promeniStranu2(){
 
 const pitanjaJSON = `[
     {
-        "pitanje": "Koje godine je poceo prvi svetski rat?",
+        "pitanje": "Koje godine je počeo prvi svetski rat?",
         "odgovori": [
             { "tekst": "1915", "tacno": "false"},
             { "tekst": "1914", "tacno": "true"},
@@ -50,12 +50,12 @@ const pitanjaJSON = `[
         "odgovori": [
             { "tekst": "Portugala", "tacno": "false"},
             { "tekst": "Maroka", "tacno": "false"},
-            { "tekst": "Spanije", "tacno": "true"},
+            { "tekst": "Španije", "tacno": "true"},
             { "tekst": "Tunisa", "tacno": "false"}
         ]
     },
     {
-        "pitanje": "Had je bog cega?",
+        "pitanje": "Had je bog čega?",
         "odgovori": [
             { "tekst": "Rata", "tacno": "false"},
             { "tekst": "Vode", "tacno": "false"},
@@ -73,7 +73,7 @@ const pitanjaJSON = `[
         ]
     },
     {
-        "pitanje": "Koliko ima kostiju u telu odraslog coveka?",
+        "pitanje": "Koliko ima kostiju u telu odraslog čoveka?",
         "odgovori": [
             { "tekst": "206", "tacno": "true"},
             { "tekst": "227", "tacno": "false"},
@@ -82,12 +82,12 @@ const pitanjaJSON = `[
         ]
     },
     {
-        "pitanje": "Koji je najveci grad Amerike?",
+        "pitanje": "Koji je najveći grad Amerike?",
         "odgovori": [
             { "tekst": "Filadelfija", "tacno": "false"},
             { "tekst": "Njujork", "tacno": "true"},
             { "tekst": "Boston", "tacno": "false"},
-            { "tekst": "Vasington", "tacno": "false"}
+            { "tekst": "Vašington", "tacno": "false"}
         ]
     },
     {
@@ -103,11 +103,11 @@ const pitanjaJSON = `[
 
 const pitanjaJSONunos = `[
     {
-        "pitanje": "Najvisa planina na svetu je:",
+        "pitanje": "Najviša planina na svetu je:",
         "odgovor": "Mont Everest"
     },
     {
-        "pitanje": "Kada je poceo Prvi srpski ustanak?",
+        "pitanje": "Koje godine je počeo Prvi srpski ustanak? (Uneti godinu bez tačke)",
         "odgovor": "1804"
     },
     {
@@ -115,8 +115,8 @@ const pitanjaJSONunos = `[
         "odgovor": "okrugla"
     },
     {
-        "pitanje": "Ko je sastavio Azbuku?",
-        "odgovor": "Vuk Stefanovic Karadzic"
+        "pitanje": "Hemijska oznaka za vodu je: ",
+        "odgovor": "H2O"
     }
 ]`
 
@@ -139,33 +139,59 @@ var zapocniIgru = document.getElementById('zapocniIgru');
 var unos = document.getElementById('unos');
 konacanBrojPoena = document.getElementById('konacanBrojPoena');
 //konacanBrojPoena.innerHTML = brojPoena;
+var tajmer = document.getElementById('tajmer');
+var vidiTabelu = document.getElementById('vidiTabelu');
+
+var vremeZaOdgovor = 20;
+
+var istekloVreme;
+var istekloVremeUnos;
+var vremeOdgovora;
+
+
+
 if (zapocniIgru){
+    
+
     zapocniIgru.addEventListener('click', pocniIgru);
 
-
+    odustaniDugme.addEventListener('click', brojPoenaStrana);
 
 
     sledecePitanjeDugme.addEventListener('click', () => {
-        trenutniIndeksPitanja++;
-        if (trenutniIndeksPitanja < 8){
-            postaviPitanje();
+        if (trenutniIndeksPitanjaUnos < 3){
+            trenutniIndeksPitanja++;
+            if (trenutniIndeksPitanja < 8){
+                clearTimeout(istekloVreme);
+                clearInterval(vremeOdgovora);
+                postaviPitanje();
+            } else {
+                clearTimeout(istekloVreme);
+                clearTimeout(istekloVremeUnos);
+                clearInterval(vremeOdgovora);
+                nastaviIgruUnos();
+            }
         } else {
-            nastaviIgruUnos();
+            clearTimeout(istekloVremeUnos);
+            clearInterval(vremeOdgovora);
+            brojPoenaStrana();
         }
-        if (trenutniIndeksPitanjaUnos == 3){
-            //setTimeout(brojPoenaStrana, 20000);
-        }
+        
+        
     });
 
     function brojPoenaStrana(){
         brojPoenaDiv = document.getElementById('brojPoena');
         brojPoenaDiv.classList.remove('sakrij');
         ceoDivPitanja.classList.add('sakrij');
+        tajmer.classList.add('sakrij');
+        vidiTabelu.classList.remove('sakrij');
         konacanBrojPoena.innerHTML = brojPoena;
     }
 
 
     function pocniIgru(){
+        tajmer.classList.remove('sakrij');
         zapocniIgru.classList.add('sakrij');
         ponudjeniOdgovori.classList.remove('sakrij');
         pitanje.classList.remove('sakrij');
@@ -176,10 +202,20 @@ if (zapocniIgru){
         postaviPitanje();
     }
 
+    function promeniVreme(){
+        vremeZaOdgovor--;
+        tajmer.innerHTML = vremeZaOdgovor;
+    }
+
     function postaviPitanje(){
         restartuj();
+        
+        vremeZaOdgovor = 20;
+        tajmer.innerHTML = vremeZaOdgovor;
+        vremeOdgovora = setInterval(promeniVreme, 1000);
+
         prikaziPitanje(mesajPitanja[trenutniIndeksPitanja]);
-        setTimeout(vremeIstekaPitanje, 20000);
+        istekloVreme = setTimeout(vremeIstekaPitanje, 20000);
     }
 
 
@@ -221,12 +257,15 @@ if (zapocniIgru){
         });
         
         if (trenutniIndeksPitanja < 7){
-            setTimeout(postaviPitanje, 2000);
+            clearTimeout(istekloVreme);
+            clearInterval(vremeOdgovora);
+            var postavitiPitanje = setTimeout(postaviPitanje, 1000);
             trenutniIndeksPitanja++;
         } else {
-            setTimeout(nastaviIgruUnos, 2000);
+            clearTimeout(istekloVreme);
+            clearInterval(vremeOdgovora);
+            var nastavitiSaUnosom = setTimeout(nastaviIgruUnos, 1000);
         }
-        
     }
 
     function statusOdgovora(element, tacno){
@@ -253,8 +292,13 @@ if (zapocniIgru){
 
     function postaviPitanjeUnos(){
         restartuj();
+
+        vremeZaOdgovor = 20;
+        tajmer.innerHTML = vremeZaOdgovor;
+        vremeOdgovora = setInterval(promeniVreme, 1000);
+
         prikaziPitanjeUnos(mesajPitanjaUnos[trenutniIndeksPitanjaUnos]);
-        setTimeout(vremeIstekaPitanjeUnos, 20000);
+        istekloVremeUnos = setTimeout(vremeIstekaPitanjeUnos, 20000);
     }
 
     function prikaziPitanjeUnos(postaviPitanje){
@@ -273,15 +317,21 @@ if (zapocniIgru){
             unos.classList.add('netacno');
         }
         if (trenutniIndeksPitanjaUnos < 3){
-            setTimeout(postaviPitanjeUnos, 2000);
+            clearTimeout(istekloVremeUnos);
+            clearInterval(vremeOdgovora);
+            setTimeout(postaviPitanjeUnos, 1000);
             trenutniIndeksPitanjaUnos++;
         } else {
-            setTimeout(brojPoenaStrana, 2000);
-            console.log(brojPoena);
+            clearInterval(vremeOdgovora);
+            clearTimeout(istekloVremeUnos)
+            setTimeout(brojPoenaStrana, 1000);
         }
     }
 
     function vremeIstekaPitanje(){
+        clearInterval(vremeOdgovora);
+
+
         if (trenutniIndeksPitanja < 7){
             trenutniIndeksPitanja++;
             postaviPitanje();
@@ -291,6 +341,8 @@ if (zapocniIgru){
     }
 
     function vremeIstekaPitanjeUnos(){
+        clearInterval(vremeOdgovora);
+
         if (trenutniIndeksPitanjaUnos < 3){
             trenutniIndeksPitanjaUnos++;
             postaviPitanjeUnos();
@@ -298,5 +350,6 @@ if (zapocniIgru){
             brojPoenaStrana();
         }
     }
+
     
 }
