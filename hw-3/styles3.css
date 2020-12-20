@@ -179,8 +179,40 @@ h2 {
 }
 
 .brojPoenaTekst {
-    position: absolute;
-    top: 50%;
+    position: fixed;
+    top: 20px;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, 0);
+}
+
+.tajmer {
+    text-align: right;
+    margin: 20px;
+    font-size: 75px;
+    font-weight: bold;
+    color:rgb(170, 170, 223);
+}
+
+.vidiTabelu {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    border-radius: 15px;
+    background-color: rgb(84, 84, 228);
+    color: rgb(170, 170, 223);
+    font-weight: bold;
+    font-size: 16px;
+    border: none;
+    height: 35px;
+    width: 250px;
+}
+
+.vidiTabelu:focus {
+    outline: none;
+}
+
+.vidiTabelu:hover {
+    cursor: pointer;
+    box-shadow: 1px 1px 2px 2px black;
 }
