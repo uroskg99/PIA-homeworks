@@ -53,103 +53,28 @@ function promeniStranu2(){
     window.location.href = "quiz-questions.html";
 }
 
-const pitanjaJSON = `[
-    {
-        "pitanje": "Koje godine je počeo prvi svetski rat?",
-        "odgovori": [
-            { "tekst": "1915", "tacno": "false"},
-            { "tekst": "1914", "tacno": "true"},
-            { "tekst": "1918", "tacno": "false"},
-            { "tekst": "1925", "tacno": "false"}
-        ]
-    },
-    {
-        "pitanje": "Izbaci uljeza:",
-        "odgovori": [
-            { "tekst": "JavaScript", "tacno": "false"},
-            { "tekst": "CSS", "tacno": "false"},
-            { "tekst": "HTML", "tacno": "false"},
-            { "tekst": "PHP", "tacno": "true"}
-        ]
-    },
-    {
-        "pitanje": "Katalonija je deo:",
-        "odgovori": [
-            { "tekst": "Portugala", "tacno": "false"},
-            { "tekst": "Maroka", "tacno": "false"},
-            { "tekst": "Španije", "tacno": "true"},
-            { "tekst": "Tunisa", "tacno": "false"}
-        ]
-    },
-    {
-        "pitanje": "Had je bog čega?",
-        "odgovori": [
-            { "tekst": "Rata", "tacno": "false"},
-            { "tekst": "Vode", "tacno": "false"},
-            { "tekst": "Ljubavi", "tacno": "false"},
-            { "tekst": "Podzemnog sveta", "tacno": "true"}
-        ]
-    },
-    {
-        "pitanje": "Ko je otkrio penicilin?",
-        "odgovori": [
-            { "tekst": "Johan Mendel", "tacno": "false"},
-            { "tekst": "Marija Kiri", "tacno": "false"},
-            { "tekst": "Luj Paster", "tacno": "false"},
-            { "tekst": "Aleksandar Fleming", "tacno": "true"}
-        ]
-    },
-    {
-        "pitanje": "Koliko ima kostiju u telu odraslog čoveka?",
-        "odgovori": [
-            { "tekst": "206", "tacno": "true"},
-            { "tekst": "227", "tacno": "false"},
-            { "tekst": "223", "tacno": "false"},
-            { "tekst": "210", "tacno": "false"}
-        ]
-    },
-    {
-        "pitanje": "Koji je najveći grad Amerike?",
-        "odgovori": [
-            { "tekst": "Filadelfija", "tacno": "false"},
-            { "tekst": "Njujork", "tacno": "true"},
-            { "tekst": "Boston", "tacno": "false"},
-            { "tekst": "Vašington", "tacno": "false"}
-        ]
-    },
-    {
-        "pitanje": "Ime glavnog glumca u filmu John Wick je:",
-        "odgovori": [
-            { "tekst": "Keanu Reeves", "tacno": "true"},
-            { "tekst": "Liam Neeson", "tacno": "false"},
-            { "tekst": "Christian Bale", "tacno": "false"},
-            { "tekst": "Tom Hardy", "tacno": "false"}
-        ]
-    }
-]`
 
-const pitanjaJSONunos = `[
-    {
-        "pitanje": "Najviša planina na svetu je:",
-        "odgovor": "Mont Everest"
-    },
-    {
-        "pitanje": "Koje godine je počeo Prvi srpski ustanak? (Uneti godinu bez tačke)",
-        "odgovor": "1804"
-    },
-    {
-        "pitanje": "Dovrsi izreku - Lopta je: ",
-        "odgovor": "okrugla"
-    },
-    {
-        "pitanje": "Hemijska oznaka za vodu je: ",
-        "odgovor": "H2O"
-    }
-]`
+var pitanjaJS, pitanjaJSunos;
 
-var pitanjaJS = JSON.parse(pitanjaJSON);
-var pitanjaJSunos = JSON.parse(pitanjaJSONunos);
-var mesajPitanja, trenutniIndeksPitanja
+fetch('pitanja.json')
+		.then(function (response) {
+			return response.json()
+		}).
+		then(function (data) {
+			pitanjaJS = data;
+		});
+
+fetch('pitanjaUnos.json')
+		.then(function (response) {
+			return response.json()
+		}).
+		then(function (data) {
+			pitanjaJSunos = data;
+		});
+
+
+
+var mesajPitanja, trenutniIndeksPitanja, mesajPitanjaUnos;
 var trenutniIndeksPitanjaUnos;
 trenutniIndeksPitanjaUnos = -1;
 var brojPoena = 0;
@@ -161,7 +86,6 @@ var brojPoenaDiv;
 const pitanje = document.getElementById('pitanje');
 const ponudjeniOdgovori = document.getElementById('ponudjeni-odgovori');
 const proveriDugme = document.getElementById('proveri');
-const mesajPitanjaUnos = pitanjaJSunos.sort(() => Math.random() - .5);
 const ceoDivPitanja = document.getElementById('ceoDivPitanja');
 const sledecePitanjeDugme = document.getElementById('nastavi');
 const odustaniDugme = document.getElementById('odustani');
@@ -183,12 +107,9 @@ var istekloVremeUnos;
 var vremeOdgovora;
 
 
-
-
 if (zapocniIgru){
 
-    
-   
+
     zapocniIgru.addEventListener('click', pocniIgru);
 
     odustaniDugme.addEventListener('click', brojPoenaStrana);
@@ -233,6 +154,50 @@ if (zapocniIgru){
         privremeniNiz[trenutniBrojIgraca]["poeni"] = brojPoena;
         localStorage.setItem('niz', JSON.stringify(privremeniNiz));
 
+
+
+
+        var konacniNiz = JSON.parse(localStorage.getItem('niz'));
+
+        konacniNiz.sort(function(a, b) {
+            if (b["poeni"] > a["poeni"]) {
+                return 1;
+            }
+
+            if (b["poeni"] < a["poeni"]) {
+                return -1;
+            }
+
+            if (b["poeni"] == a["poeni"]) {
+                if (b["ime"].toLowerCase() > a["ime"].toLowerCase()){
+                    return -1;
+                } else {
+                    return 1;
+                }
+            }
+        });
+
+       
+        
+        
+        
+
+        for (var i = 0; i < 10; i++){
+            
+
+            var napraviNoviClan = document.createElement('li');
+            var imeIgracaTrenutnog = document.createTextNode(konacniNiz[i]["ime"]);
+            napraviNoviClan.appendChild(imeIgracaTrenutnog);
+
+            var napraviClanSpan = document.createElement('span');
+            var brojPoenaTrenutnog = document.createTextNode(konacniNiz[i]["poeni"]);
+            napraviClanSpan.appendChild(brojPoenaTrenutnog);
+            napraviNoviClan.appendChild(napraviClanSpan);
+            
+
+            lista.appendChild(napraviNoviClan);
+        }
+
     }
 
 
@@ -244,6 +209,7 @@ if (zapocniIgru){
         sledecePitanjeDugme.classList.remove('sakrij');
         odustaniDugme.classList.remove('sakrij');
         mesajPitanja = pitanjaJS.sort(() => Math.random() - .5);
+        mesajPitanjaUnos = pitanjaJSunos.sort(() => Math.random() - .5);
         trenutniIndeksPitanja = 0;
         postaviPitanje();
     }
@@ -408,49 +374,9 @@ if (zapocniIgru){
         vidiTabelu.classList.add('sakrij');
         vratiPocetak.classList.add('sakrij');
         rangTabela.classList.remove('sakrij');
-
-        var konacniNiz = JSON.parse(localStorage.getItem('niz'));
-
-        konacniNiz.sort(function(a, b) {
-            if (b["poeni"] > a["poeni"]) {
-                return 1;
-            }
-
-            if (b["poeni"] < a["poeni"]) {
-                return -1;
-            }
-
-            if (b["poeni"] == a["poeni"]) {
-                if (b["ime"] > a["ime"]){
-                    return -1;
-                } else {
-                    return 1;
-                }
-            }
-        });
-
-       
-        
-        
-        
-
-        for (var i = 0; i < 10; i++){
-            
-
-            var napraviNoviClan = document.createElement('li');
-            var imeIgracaTrenutnog = document.createTextNode(konacniNiz[i]["ime"]);
-            napraviNoviClan.appendChild(imeIgracaTrenutnog);
-
-            var napraviClanSpan = document.createElement('span');
-            var brojPoenaTrenutnog = document.createTextNode(konacniNiz[i]["poeni"]);
-            napraviClanSpan.appendChild(brojPoenaTrenutnog);
-            napraviNoviClan.appendChild(napraviClanSpan);
-            
-
-            lista.appendChild(napraviNoviClan);
-        }
-
-        
+        clearInterval(vremeOdgovora);
+        clearTimeout(istekloVremeUnos);
+        clearTimeout(istekloVreme);
     }
 
     restartujKviz.addEventListener('click', () => {
