@@ -19,8 +19,7 @@ body {
     border-radius: 6px;
     height: 80%;
     width: 60%;
-    padding-top: 30px;
-    padding: 20px;
+    padding-top: 10px;
 }
 
 h1 {
@@ -31,13 +30,12 @@ h1 {
 
 .lista-pravila {
     margin-left: 35px;
-    margin-top: 60px;
+    margin-top: 20px;
 }
 
 li {
     color: rgb(71, 40, 40);
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin: 10px;
 }
 
 .dugme-pravila {
