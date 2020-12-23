@@ -1,26 +1,53 @@
-const btn1 = document.getElementById('submit');
-const btn2 = document.getElementById('dugme-pravila');
+const dugme1 = document.getElementById('submit');
+const dugme2 = document.getElementById('dugme-pravila');
 
 
-if (btn1){
-    btn1.addEventListener('click', promeniStranu1);
+if (dugme1){
+    dugme1.addEventListener('click', promeniStranu1);
+    
 }
 
-if (btn2){
-    btn2.addEventListener('click', promeniStranu2);
+if (dugme2){
+    dugme2.addEventListener('click', promeniStranu2);
 }
 
 
 function promeniStranu1(){
-    var ime = document.getElementById('text-input').value;
-    if (ime != ""){
+    imeIgraca = document.getElementById('text-input').value;
+    if (imeIgraca != ""){
         window.location.href = "instructions.html";
+        
+        if (localStorage.getItem('niz') == null){
+            localStorage.setItem('niz', '[]');
+        }
+
+        if (localStorage.getItem('brojIgraca') == null){
+            localStorage.setItem('brojIgraca', '-1');
+        }
+
+        var brojIgracaString = JSON.parse(localStorage.getItem('brojIgraca'));
+        var brojIgraca = parseInt(brojIgracaString);
+        brojIgraca += 1;
+        var izlazniBrojIgraca = brojIgraca.toString();
+        localStorage.setItem('brojIgraca', izlazniBrojIgraca);
+
+
+        
+
+        var prethodniNiz = JSON.parse(localStorage.getItem('niz'));
+        var prethodniNizObj = {};
+        prethodniNizObj["ime"] = imeIgraca;
+        prethodniNiz.push(prethodniNizObj);
+
+        localStorage.setItem('niz', JSON.stringify(prethodniNiz));
+
     } else {
         var napomena = document.getElementById('napomena');
         napomena.innerHTML = "Neispravan unos!";
         napomena.style.cssText = 'color: red; font-weight: bold; text-transform: uppercase';
     }
 }
+
 
 function promeniStranu2(){
     window.location.href = "quiz-questions.html";
@@ -91,7 +118,7 @@ const pitanjaJSON = `[
         ]
     },
     {
-        "pitanje": "Kako se zove glavni glumac u filmu John Wick?",
+        "pitanje": "Ime glavnog glumca u filmu John Wick je:",
         "odgovori": [
             { "tekst": "Keanu Reeves", "tacno": "true"},
             { "tekst": "Liam Neeson", "tacno": "false"},
@@ -125,22 +152,29 @@ var pitanjaJSunos = JSON.parse(pitanjaJSONunos);
 var mesajPitanja, trenutniIndeksPitanja
 var trenutniIndeksPitanjaUnos;
 trenutniIndeksPitanjaUnos = -1;
-var pitanje = document.getElementById('pitanje');
-var ponudjeniOdgovori = document.getElementById('ponudjeni-odgovori');
 var brojPoena = 0;
 var dodaj;
-var proveriDugme = document.getElementById('proveri');
-const mesajPitanjaUnos = pitanjaJSunos.sort(() => Math.random() - .5);
 var brojPoenaDiv;
-var ceoDivPitanja = document.getElementById('ceoDivPitanja');
-var sledecePitanjeDugme = document.getElementById('nastavi');
-var odustaniDugme = document.getElementById('odustani');
-var zapocniIgru = document.getElementById('zapocniIgru');
-var unos = document.getElementById('unos');
+
+
+
+const pitanje = document.getElementById('pitanje');
+const ponudjeniOdgovori = document.getElementById('ponudjeni-odgovori');
+const proveriDugme = document.getElementById('proveri');
+const mesajPitanjaUnos = pitanjaJSunos.sort(() => Math.random() - .5);
+const ceoDivPitanja = document.getElementById('ceoDivPitanja');
+const sledecePitanjeDugme = document.getElementById('nastavi');
+const odustaniDugme = document.getElementById('odustani');
+const zapocniIgru = document.getElementById('zapocniIgru');
+const unos = document.getElementById('unos');
+const lista = document.getElementById('lista');
 konacanBrojPoena = document.getElementById('konacanBrojPoena');
-//konacanBrojPoena.innerHTML = brojPoena;
-var tajmer = document.getElementById('tajmer');
-var vidiTabelu = document.getElementById('vidiTabelu');
+
+const tajmer = document.getElementById('tajmer');
+const vidiTabelu = document.getElementById('vidiTabelu');
+const vratiPocetak = document.getElementById('vratiPocetak');
+const rangTabela = document.getElementById('rangTabela');
+const restartujKviz = document.getElementById('restartujKviz');
 
 var vremeZaOdgovor = 20;
 
@@ -150,9 +184,11 @@ var vremeOdgovora;
 
 
 
-if (zapocniIgru){
-    
 
+if (zapocniIgru){
+
+    
+   
     zapocniIgru.addEventListener('click', pocniIgru);
 
     odustaniDugme.addEventListener('click', brojPoenaStrana);
@@ -186,7 +222,17 @@ if (zapocniIgru){
         ceoDivPitanja.classList.add('sakrij');
         tajmer.classList.add('sakrij');
         vidiTabelu.classList.remove('sakrij');
+        vratiPocetak.classList.remove('sakrij');
         konacanBrojPoena.innerHTML = brojPoena;
+
+        var trenutniIgrac = JSON.parse(localStorage.getItem('brojIgraca'));
+        var trenutniBrojIgraca = parseInt(trenutniIgrac);
+
+
+        var privremeniNiz = JSON.parse(localStorage.getItem('niz'));
+        privremeniNiz[trenutniBrojIgraca]["poeni"] = brojPoena;
+        localStorage.setItem('niz', JSON.stringify(privremeniNiz));
+
     }
 
 
@@ -350,6 +396,66 @@ if (zapocniIgru){
             brojPoenaStrana();
         }
     }
+
+    vratiPocetak.addEventListener('click', () => {
+        window.location.href = "quiz.html";
+    });
+
+    vidiTabelu.addEventListener('click', prikaziTabelu);
+
+    function prikaziTabelu(){
+        brojPoenaDiv.classList.add('sakrij');
+        vidiTabelu.classList.add('sakrij');
+        vratiPocetak.classList.add('sakrij');
+        rangTabela.classList.remove('sakrij');
+
+        var konacniNiz = JSON.parse(localStorage.getItem('niz'));
+
+        konacniNiz.sort(function(a, b) {
+            if (b["poeni"] > a["poeni"]) {
+                return 1;
+            }
+
+            if (b["poeni"] < a["poeni"]) {
+                return -1;
+            }
+
+            if (b["poeni"] == a["poeni"]) {
+                if (b["ime"] > a["ime"]){
+                    return -1;
+                } else {
+                    return 1;
+                }
+            }
+        });
+
+       
+        
+        
+        
+
+        for (var i = 0; i < 10; i++){
+            
+
+            var napraviNoviClan = document.createElement('li');
+            var imeIgracaTrenutnog = document.createTextNode(konacniNiz[i]["ime"]);
+            napraviNoviClan.appendChild(imeIgracaTrenutnog);
+
+            var napraviClanSpan = document.createElement('span');
+            var brojPoenaTrenutnog = document.createTextNode(konacniNiz[i]["poeni"]);
+            napraviClanSpan.appendChild(brojPoenaTrenutnog);
+            napraviNoviClan.appendChild(napraviClanSpan);
+            
+
+            lista.appendChild(napraviNoviClan);
+        }
+
+        
+    }
+
+    restartujKviz.addEventListener('click', () => {
+        window.location.href = "quiz.html";
+    });
 
     
 }
