@@ -1,0 +1,74 @@
+[
+    {
+        "pitanje": "Koje godine je počeo prvi svetski rat?",
+        "odgovori": [
+            { "tekst": "1915", "tacno": "false"},
+            { "tekst": "1914", "tacno": "true"},
+            { "tekst": "1918", "tacno": "false"},
+            { "tekst": "1925", "tacno": "false"}
+        ]
+    },
+    {
+        "pitanje": "Izbaci uljeza:",
+        "odgovori": [
+            { "tekst": "JavaScript", "tacno": "false"},
+            { "tekst": "CSS", "tacno": "false"},
+            { "tekst": "HTML", "tacno": "false"},
+            { "tekst": "PHP", "tacno": "true"}
+        ]
+    },
+    {
+        "pitanje": "Katalonija je deo:",
+        "odgovori": [
+            { "tekst": "Portugala", "tacno": "false"},
+            { "tekst": "Maroka", "tacno": "false"},
+            { "tekst": "Španije", "tacno": "true"},
+            { "tekst": "Tunisa", "tacno": "false"}
+        ]
+    },
+    {
+        "pitanje": "Had je bog čega?",
+        "odgovori": [
+            { "tekst": "Rata", "tacno": "false"},
+            { "tekst": "Vode", "tacno": "false"},
+            { "tekst": "Ljubavi", "tacno": "false"},
+            { "tekst": "Podzemnog sveta", "tacno": "true"}
+        ]
+    },
+    {
+        "pitanje": "Ko je otkrio penicilin?",
+        "odgovori": [
+            { "tekst": "Johan Mendel", "tacno": "false"},
+            { "tekst": "Marija Kiri", "tacno": "false"},
+            { "tekst": "Luj Paster", "tacno": "false"},
+            { "tekst": "Aleksandar Fleming", "tacno": "true"}
+        ]
+    },
+    {
+        "pitanje": "Koliko ima kostiju u telu odraslog čoveka?",
+        "odgovori": [
+            { "tekst": "206", "tacno": "true"},
+            { "tekst": "227", "tacno": "false"},
+            { "tekst": "223", "tacno": "false"},
+            { "tekst": "210", "tacno": "false"}
+        ]
+    },
+    {
+        "pitanje": "Koji je najveći grad Amerike?",
+        "odgovori": [
+            { "tekst": "Filadelfija", "tacno": "false"},
+            { "tekst": "Njujork", "tacno": "true"},
+            { "tekst": "Boston", "tacno": "false"},
+            { "tekst": "Vašington", "tacno": "false"}
+        ]
+    },
+    {
+        "pitanje": "Ime glavnog glumca u filmu John Wick je:",
+        "odgovori": [
+            { "tekst": "Keanu Reeves", "tacno": "true"},
+            { "tekst": "Liam Neeson", "tacno": "false"},
+            { "tekst": "Christian Bale", "tacno": "false"},
+            { "tekst": "Tom Hardy", "tacno": "false"}
+        ]
+    }
+]
