@@ -12,7 +12,7 @@ body {
 h2 {
     text-align: center;
     padding-top: 10px;
-    font-size: 33px;
+    font-size: 24px;
 }
 
 .pitanja {
@@ -29,7 +29,7 @@ h2 {
 }
 
 .ponudjeni-odgovori {
-    margin-top: 80px;
+    margin-top: 20px;
     display: grid;
     grid-template-columns: repeat(2, auto);
     gap: 30px;
@@ -63,8 +63,6 @@ h2 {
     background-color: rgb(245, 56, 56);
     color: white;
 }
-
-
 
 .odgovori:focus, .zapocniIgru:focus {
     outline: none;
@@ -174,7 +172,7 @@ h2 {
     box-shadow: 1px 1px 2px 2px black;
     border-radius: 6px;
     height: 25%;
-    width: 50%;
+    width: 70%;
     text-align: center;
 }
 
@@ -193,13 +191,8 @@ h2 {
     color:rgb(170, 170, 223);
 }
 
-.vidiTabelu {
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translate(-50%, 0);
+.vidiTabelu, .vratiPocetak {
     border-radius: 15px;
-    background-color: rgb(84, 84, 228);
     color: rgb(170, 170, 223);
     font-weight: bold;
     font-size: 16px;
@@ -208,11 +201,77 @@ h2 {
     width: 250px;
 }
 
-.vidiTabelu:focus {
+.vidiTabelu {
+    position: fixed;
+    bottom: 20px;
+    left: 75%;
+    transform: translate(-50%, 0);
+    background-color: rgb(24, 138, 113);
+    color: white;
+}
+
+.vratiPocetak {
+    position: fixed;
+    bottom: 20px;
+    left: 25%;
+    transform: translate(-50%, 0);
+    background-color: rgb(28, 28, 100);
+    color: white;
+}
+
+.vidiTabelu:focus, .vratiPocetak:focus {
     outline: none;
 }
 
-.vidiTabelu:hover {
+.vidiTabelu:hover, .vratiPocetak:hover {
     cursor: pointer;
     box-shadow: 1px 1px 2px 2px black;
+}
+
+.rangTabela {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(221, 217, 212);
+    box-shadow: 1px 1px 2px 2px black;
+    border-radius: 6px;
+    height: 85%;
+    width: 60%;
+}
+
+ol {
+    padding: 60px;
+    font-size: 30px;
+    color: rgb(84, 84, 228);
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.restartujKviz {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(28, 28, 100);
+    color: white;
+    border-radius: 15px;
+    font-weight: bold;
+    font-size: 16px;
+    border: none;
+    height: 35px;
+    width: 250px;
+}
+
+.restartujKviz:focus {
+    outline: none;
+}
+
+.restartujKviz:hover {
+    cursor: pointer;
+    box-shadow: 1px 1px 2px 2px black;
+}
+
+span {
+    float: right;
 }
