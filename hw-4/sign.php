@@ -16,62 +16,41 @@
     include('config.php');
     session_start();
 
-    if(isset($_POST['sign'])){
-        /*$login = $_REQUEST['user'];
-        $password = $_REQUEST['password'];
-        $query = "SELECT * FROM `users` WHERE ( username='$login' OR email = '$login') and password='$password'";
-        $result = mysqli_query($conn, $query);
-        $row = $result->fetch_assoc();
+    
         
+    if(isset($_POST['sign'])){
+        $login = $_POST['user'];
+        $pass = $_POST['password'];
+        $qry = "SELECT username, email, password, role FROM users";
+        $res = mysqli_query($conn, $qry);
 
-        //session_regenerate_id();
-        $_SESSION['username'] = $row['username'];
-        $_SESSION['role'] = $row['role'];
-        //session_write_close();
-
-        if($result->num_rows==1 && $_SESSION['role'] == "user"){
-            header("location:home.php");
-        }
-        else if($result->num_rows==1 && $_SESSION['role'] == "admin"){
-            header("location:homeadmin.php");
-        }*/
-
-        if(isset($_POST['sign'])){
-            $login = $_POST['user'];
-            $pass = $_POST['password'];
-            $qry = "SELECT username, email, password, role FROM users";
-            $res = mysqli_query($conn, $qry);
-
-            while($row=mysqli_fetch_array($res)){
-                $username = $row['username'];
-                $email = $row['email'];
-                $password = $row['password'];
-                $role = $row['role'];
-                if($login == $row['username'] or $login == $row['email']){
-                    if($pass == $row['password']){
-                        if($role == "admin"){
-                            header("location:homeadmin.php");
-                        }else{
-                            header("location:home.php");
-                            $_SESSION['username'] = $row['username'];
-                        }
+        while($row=mysqli_fetch_array($res)){
+            $username = $row['username'];
+            $email = $row['email'];
+            $password = $row['password'];
+            $role = $row['role'];
+            if($login == $row['username'] or $login == $row['email']){
+                if($pass == $row['password']){
+                    if($role == "admin"){
+                        header("location:homeadmin.php");
+                    }else{
+                        header("location:home.php");
+                        $_SESSION['username'] = $row['username'];
                     }
-                }else{
-                    $message = "wrong user informations or password";
                 }
+            }else{
+                $message = "<br>Wrong user informations or password";
             }
         }
-
-
     }
-    
+  
 
-    ?>
+?>
 
 <body>
 
     <div class="container-fluid header">
-        <a href="index.html">
+        <a href="sign.php">
             <img src="img/imdb-logo.png" class="logo">
         </a>
         <a href="register.php">
