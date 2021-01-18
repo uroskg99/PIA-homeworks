@@ -1,5 +1,6 @@
 <?php
 include 'config.php';
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -21,7 +22,7 @@ include 'config.php';
             <img src="img/imdb-logo.png" class="logo">
         </a>
         
-        <span class="login-info"><?php echo "Logged in as user"; ?></span>
+        <span class="login-info"><?php echo "You are logged in as user ".$_SESSION['username']; ?></span>
         <a href="sign.php">
             <button class="customBtn">Logout</button>
         </a>
