@@ -77,6 +77,7 @@
                 if ($unique == 0){
                     $query = "INSERT INTO users (name,surname,username,email,password) VALUES ('$name', '$surname', '$username', '$email', '$password')";
                     mysqli_query($conn, $query);
+                    header("location:sign.php");
                 }
 
             } 
