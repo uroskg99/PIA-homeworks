@@ -49,3 +49,20 @@ h2 {
     margin-right: 25px;
     font-weight: bold;
 }
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 4px;
+}
+
+.text-center {
+    color: white;
+    font-weight: bold;
+}
+
+.col-sm-4 {
+    width: 160px;
+    background-color: white;
+    text-align: center;
+}
