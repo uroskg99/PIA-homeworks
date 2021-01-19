@@ -12,8 +12,9 @@ session_start();
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-    <link rel="stylesheet" type="text/css" href="home.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="home2.css">
 
 </head>
 <body>
@@ -28,7 +29,12 @@ session_start();
         </a>
     </div>
 
-    <div class="container mt-3">
+    
+
+
+
+
+    <div class="container searchbox">
         <h3 class="text-center">Search any movie</h3>
         <form action="home.php" method="GET">
             <div class="input-group mb-3">
@@ -40,7 +46,7 @@ session_start();
         </form>
     </div>
 
-    <div class="container mt-3">
+    <div class="container searchbox">
         <form action="home.php" method="get">
             <div class="form-group">
                 <label for="sel1">Search by genre</label>
@@ -85,18 +91,6 @@ session_start();
 
     ?>
 
-    <?php
-    
-    /*if(isset($_GET['genre-submit'])){
-        $genre = mysqli_real_escape_string($conn, $_GET['list']);
-        $movie_qry = "SELECT * FROM movies WHERE genre='$genre'";
-        $movie_res = mysqli_query($conn, $movie_qry);
-        $queryRes = mysqli_num_rows($movie_res);
-        echo mysqli_fetch_assoc($movie_res);
-    }*/
-
-    ?>
-
     <div class="container">
         <div class="row">
             <?php
@@ -105,16 +99,16 @@ session_start();
             }else{
                 while($movie_data = mysqli_fetch_assoc($movie_res)){
             ?>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="card">
-                <?php echo "<a href='moviepage.php?title='".$movie_data['title'].">"; ?>
-                    <img class="card-img-top" src="movies-img/soul.jpg" alt="Card image">
+                <?php echo "<a href='moviepage.php?title=".$movie_data['title']."'>"; ?>
+                    <img class="card-img-top" src=<?php echo $movie_data['picture']; ?> alt="Card image">
                 <?php echo "</a>"; ?>
                     <div class="card-body">
                       <h4 class="card-title"><?php echo $movie_data['title'];  ?><span> (<?php echo $movie_data['year']; ?>) </span></h4>
                       <p class="card-text"><?php echo $movie_data['genre']; ?></p>
                         <?php echo "<a href='moviepage.php?title=".$movie_data['title']."'>"; ?>
-                        <button class="btn btn-dark">See Movie Details</a>
+                        <button class="card-btn">See Movie Details</a>
                         <?php echo "</a>"; ?>
                     </div>
                 </div>
