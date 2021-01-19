@@ -34,9 +34,9 @@
                     if($role == "admin"){
                         header("location:homeadmin.php");
                     }else{
-                        header("location:home.php");
-                        $_SESSION['username'] = $row['username'];
+                        header("location:home.php");                      
                     }
+                    $_SESSION['username'] = $row['username'];
                 }
             }else{
                 $message = "<br>Wrong user informations or password";
