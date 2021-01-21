@@ -73,41 +73,66 @@ label {
 
 .searchbox {
     width: 40%;
+    position: relative;
 }
 
-.col-md-3 {
-    height: 430px;
-    margin-bottom: 30px;
+.btnGenre {
+    position: absolute;
 }
 
-.card {
-    width: 250px;
-    height: 420px;
-    background-color: rgb(18,18,18);
+.all-movies {
+    margin-top: 100px;
 }
 
-.card-img-top {
-    width: 200px;
-    height: 250px;
-    margin-bottom: 0;  
+.selectbox {
+    width: 86%;
+    float: left;
 }
 
-.card-text {
-    color: white;
+
+.btn-genre {
+    margin-top: 32px;
 }
 
-h4 {
-    margin-top: 0;
-    font-size: 20px;
-    color: white;
-}
-
-.card-btn {
-    background-color: rgb(245,197,24);
-    padding: 0 15px;
-    border-radius: 6px;
-    color: black;
-    border: none;
+.movie-box {
+    background-color: rgb(17,17,17);
+    width: 100%;
+    height: 240px;
+    padding: 0;
+    margin: 20px 0;
     text-decoration: none;
-    height: 30px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    word-wrap: break-word;
+}
+
+.movie-box:hover {
+    text-decoration: none;
+}
+
+.movie-pic {
+    margin: 0;
+    float: left;
+    height: 100%;
+    margin-right: 18px;
+}
+
+.btn-search {
+    background-color: rgb(245,197,24);
+    font-weight: bold;
+}
+
+.title {
+    color: white;
+    font-weight: bold;
+}
+
+.desc {
+    font-style: italic;
+    color: white;
+    font-size: 13px;
+}
+
+.genre, .duration {
+    color: white;
 }
