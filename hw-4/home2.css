@@ -101,9 +101,7 @@ label {
     padding: 0;
     margin: 20px 0;
     text-decoration: none;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    word-wrap: break-word;
+    overflow: auto;
 }
 
 .movie-box:hover {
