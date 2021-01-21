@@ -40,7 +40,7 @@ session_start();
             <div class="input-group mb-3">
                 <input type="text" class="form-control" name="search" placeholder="Search">
                 <div class="input-group-append">
-                    <button class="btn btn-success" type="submit" name="search-submit">Go</button>  
+                    <button class="btn btn-search" type="submit" name="search-submit">Go</button>  
                 </div>
             </div>
         </form>
@@ -48,7 +48,7 @@ session_start();
 
     <div class="container searchbox">
         <form action="home.php" method="get">
-            <div class="form-group">
+            <div class="form-group selectbox">
                 <label for="sel1">Search by genre</label>
                 <select class="form-control" id="sel1" name="list">
                     <option>Action</option>
@@ -70,7 +70,7 @@ session_start();
                 </select>
             </div>
             <div class="input-group-append">
-                <button type="submit" class="btn btn-primary" name="genre-submit">Submit</button>
+                <button type="submit" class="btn btn-genre btn-search" name="genre-submit">Submit</button>
             </div>
         </form>
     </div>
@@ -91,35 +91,36 @@ session_start();
 
     ?>
 
-    <div class="container">
-        <div class="row">
-            <?php
-            if($queryRes <= 0){
-                echo "There are no results for";
-            }else{
-                while($movie_data = mysqli_fetch_assoc($movie_res)){
-            ?>
-            <div class="col-md-3">
-                <div class="card">
-                <?php echo "<a href='moviepage.php?title=".$movie_data['title']."'>"; ?>
-                    <img class="card-img-top" src=<?php echo $movie_data['picture']; ?> alt="Card image">
-                <?php echo "</a>"; ?>
-                    <div class="card-body">
-                      <h4 class="card-title"><?php echo $movie_data['title'];  ?><span> (<?php echo $movie_data['year']; ?>) </span></h4>
-                      <p class="card-text"><?php echo $movie_data['genre']; ?></p>
-                        <?php echo "<a href='moviepage.php?title=".$movie_data['title']."'>"; ?>
-                        <button class="card-btn">See Movie Details</a>
-                        <?php echo "</a>"; ?>
-                    </div>
-                </div>
-            </div>
-            <?php
-            }
-            }
-            ?>
-            
+    <div class="container all-movies">
+        <?php
+        if($queryRes <= 0){
+            echo "There are no results for";
+        }else{
+            while($movie_data = mysqli_fetch_assoc($movie_res)){
+        ?>
+
         
-        </div>
+            <div class="container-fluid col-sm-12 movie-box">
+             
+                <?php echo "<a href='moviepage.php?title=".$movie_data['title']."'>"; ?>
+                    <img src=<?php echo $movie_data['picture']; ?> class="movie-pic">
+                <?php echo "</a>"; ?>
+
+                <?php echo "<a href='moviepage.php?title=".$movie_data['title']."' style='text-decoration-color:white'>"; ?>
+                <h2 class="title"> <?php echo $movie_data['title'];  ?>  <span class="year"> (<?php echo $movie_data['year']; ?>)  </span></h2>
+                <?php echo "</a>"; ?>
+
+                <p class="desc"><?php echo $movie_data['description'];  ?></p>
+                <div class="genre"><?php echo $movie_data['genre']; ?></div>
+                <div class="duration"><?php echo $movie_data['duration']; ?></div>
+
+            </div>
+
+        <?php
+            }
+        }
+        ?>
+
     </div>
 
 
