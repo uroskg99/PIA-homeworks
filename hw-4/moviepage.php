@@ -14,7 +14,7 @@ session_start();
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="moviepage.css">
+    <link rel="stylesheet" type="text/css" href="moviepage2.css">
 
 </head>
 <body>
@@ -40,47 +40,46 @@ session_start();
     while($row = mysqli_fetch_assoc($result)){
 
     ?>
-    <div class="all-info">
-        <div class="container table-movie">
-            <h2><?php echo $row['title']; ?></h2>
-            <p class="desc"><?php echo $row['description']; ?></p>
-            <table class="table table-hover">
-                <tbody>
-                <tr class="table-secondary">
-                    <td class="information">Genre</td>
-                    <td><?php echo $row['genre']; ?></td>
-                </tr>    
-                <tr class="table-secondary">
-                    <td class="information">Scenarist</td>
-                    <td><?php echo $row['scenarist']; ?></td>
-                </tr> 
-                <tr class="table-secondary">
-                    <td class="information">Director</td>
-                    <td><?php echo $row['director']; ?></td>
-                </tr> 
-                <tr class="table-secondary">
-                    <td class="information">Production</td>
-                    <td><?php echo $row['production']; ?></td>
-                </tr> 
-                <tr class="table-secondary">
-                    <td class="information">Actors</td>
-                    <td><?php echo $row['actors']; ?></td>
-                </tr> 
-                <tr class="table-secondary">
-                    <td class="information">Year</td>
-                    <td><?php echo $row['year']; ?></td>
-                </tr> 
-                <tr class="table-secondary">
-                    <td class="information">Duration</td>
-                    <td><?php echo $row['duration']; ?></td>
-                </tr> 
-                
-                </tbody>
-            </table>
+
+    <div class="container all-info">
+        <div class="title">
+            <h2><?php echo $row['title']; ?><span> (<?php echo $row['year']; ?>)</span></h2>
+            <span><p class="main-info"><?php echo $row['duration']; ?> </span><span>|</span><span> <?php echo $row['genre']; ?></span></p>
         </div>
 
-        <img class="movie-pic" src=<?php echo $row['picture']; ?> >
+        
+
+        <div class="side-info">
+            <img class="movie-pic" src=<?php echo $row['picture']; ?> >
+        
+
+
+            <div class="description">
+                <p class="desc"><?php echo $row['description']; ?></p>
+                <div class="side-info"><span>Director </span>: <?php echo $row['director']; ?></div>
+                <div class="side-info"><span>Scenarists </span>: <?php echo $row['scenarist']; ?></div>
+                <div class="side-info"><span>List of actors </span>: <?php echo $row['actors']; ?></div>
+                <div class="side-info"><span>Production </span>: <?php echo $row['production']; ?></div>
+
+            </div>
+
+        </div>
+
+        <hr>
+        <div class="rating">
+            <div class="row">
+                <div class="col-sm-6">
+                    Ocene
+                </div>
+                <div class="col-sm-6">
+                    Ukupne ocene
+                </div>
+            </div>
+        </div>
+
     </div>
+
+    
 
 <?php
 }
