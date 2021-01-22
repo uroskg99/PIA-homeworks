@@ -1,0 +1,134 @@
+* {
+    box-sizing: border-box; 
+}
+
+body {
+    background-color: black;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.header {
+    background-color: rgb(18,18,18);
+    padding: 10px;
+    text-align: right;
+}
+
+.customBtn {
+    background-color: rgb(245,197,24);
+    padding: 0 15px;
+    margin: 5 20px;
+    height: 40px;
+    border-radius: 6px;
+    font-size: 22px;
+    font-weight: bolder;
+    color: black;
+    border: 0;
+}
+
+.customBtn:focus {
+    outline: none;
+}
+
+.custonBtn:hover {
+    text-shadow: black 0.3px 0.4px; 
+}
+
+.logo {
+    height: 40px;
+    float: left;
+    margin-left: 25px;
+}
+
+.login-info {
+    color: white;
+    font-weight: bold;
+    margin-right: 20px;
+}
+
+.all-info {
+    width: 70%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 0;
+}
+
+.title {
+    padding-top: 12px;
+    background-color: rgb(17,17,17);
+    padding-left: 20px;
+    width: 100%;
+    color: white;
+}
+
+.movie-pic {
+    height: 300px;
+    float: left;
+    margin-right: 10px;
+}
+
+.description {
+    height: 300px;
+}
+
+.desc {
+    font-style: italic;
+    font-size: 13px;
+    font-weight: bold;
+    padding-top: 5px;
+}
+
+.title h2 {
+    font-weight: bold;
+}
+
+.title span {
+    padding-left: 20px;
+}
+
+.side-info {
+    padding: 5px;
+    overflow: auto;
+    background-color: white;
+}
+
+.side-info span {
+    font-weight: bold;
+}
+
+.rating {
+    height: 50px;
+    background-color: white;
+}
+
+hr {
+    border-color: solid rgb(17,17,17);;
+    border-width: 2px;
+    padding: 0;
+    margin: 0;
+}
+
+.dropdown-menu {
+    background-color: rgb(18,18,18);
+}
+
+.dropdown-item {
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: right;
+}
+
+.admin-button {
+    margin: 15px 0;
+}
+
+.admin-button button {
+    margin: 0 5px;
+}
+
+.delete {
+    background-color: rgb(197, 83, 83);
+    color: white;
+}
