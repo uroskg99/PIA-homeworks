@@ -1,0 +1,101 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+body {
+    background-color: black;
+}
+
+.header {
+    background-color: rgb(18,18,18);
+    padding: 10px;
+    text-align: right;
+}
+
+.customBtn {
+    background-color: rgb(245,197,24);
+    padding: 0 15px;
+    margin: 5 20px;
+    height: 40px;
+    border-radius: 6px;
+    font-size: 22px;
+    font-weight: bolder;
+    color: black;
+    border: 0;
+}
+
+.customBtn:focus {
+    outline: none;
+}
+
+.custonBtn:hover {
+    text-shadow: black 0.3px 0.4px; 
+}
+
+.logo {
+    height: 40px;
+    float: left;
+    margin-left: 25px;
+}
+
+.formSignUp {
+    background-color: white;
+    width: 500px;
+    margin-top: 50px;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 50px;
+}
+
+h2 {
+    text-align: center;
+}
+
+label {
+    font-weight: 700;
+}
+
+.submit:hover {
+    box-shadow: rgba(0, 0, 0, 0.404) 2px 2px;
+}
+
+.button1 {
+    position: relative;
+    margin-top: 30px;
+}
+
+.submit {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.form-control {
+    border-width: 2px; 
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.form-control:focus {
+    box-shadow: none;
+    border-color: black;
+}
+
+.login-info {
+    color: white;
+    font-weight: bold;
+    padding-right: 10px;
+}
+
+.form-control::placeholder {
+    opacity: 0.5;
+}
+
+textarea {
+    resize: none;
+    padding: 5px;
+}
