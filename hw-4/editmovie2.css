@@ -1,0 +1,81 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+body {
+    background-color: black;
+}
+
+.header {
+    background-color: rgb(18,18,18);
+    padding: 10px;
+    text-align: right;
+}
+
+.header {
+    background-color: rgb(18,18,18);
+    padding: 10px;
+    text-align: right;
+}
+
+.customBtn {
+    background-color: rgb(245,197,24);
+    padding: 0 15px;
+    height: 40px;
+    border-radius: 6px;
+    font-size: 22px;
+    font-weight: bolder;
+    color: black;
+    border: 0;
+}
+
+.customBtn:focus {
+    outline: none;
+}
+
+.custonBtn:hover {
+    text-shadow: black 0.3px 0.4px; 
+}
+
+.logo {
+    height: 40px;
+    float: left;
+    margin-left: 10px;
+}
+
+.login-info {
+    color: white;
+    margin-right: 25px;
+    font-weight: bold;
+}
+
+.edit {
+    width: 70%;
+    margin-top: 20px;
+}
+
+.update-button {
+    background-color: rgb(54, 54, 163);
+    padding: 0 15px;
+    height: 40px;
+    border-radius: 6px;
+    font-size: 22px;
+    font-weight: bolder;
+    color: black;
+    border: 0;
+    margin-top: 10px;
+}
+
+label {
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.back {
+    float: left;
+    margin-left: 10px;
+}
