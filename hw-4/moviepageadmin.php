@@ -51,7 +51,9 @@ session_start();
             <h2><?php echo $row['title']; ?><span> (<?php echo $row['year']; ?>)</span></h2>
             <span><p class="main-info"><?php echo $row['duration']; ?> </span><span>|</span><span> <?php echo $row['genre']; ?></span></p>
             <div class="admin-button">
-                <button class="customBtn">Edit</button>
+                <?php echo "<a href='edit.php?title=".$row['title']."'>"; ?>
+                    <button class="customBtn">Edit</button>
+                <?php echo "</a>"; ?>
                 <?php echo "<a href='delete.php?title=".$row['title']."' onclick='return checkdelete()'>"; ?>
                     <button class="customBtn delete">Delete</button>
                 <?php echo "</a>"; ?>
