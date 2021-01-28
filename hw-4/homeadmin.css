@@ -6,7 +6,7 @@
 }
 
 body {
-    background-color: black;
+    background-color:black;
 }
 
 .header {
@@ -24,7 +24,6 @@ body {
 .customBtn {
     background-color: rgb(245,197,24);
     padding: 0 15px;
-    margin: 5 20px;
     height: 40px;
     border-radius: 6px;
     font-size: 22px;
@@ -147,6 +146,7 @@ label {
 .delete {
     background-color: rgb(197, 83, 83);
     color: white;
+    margin-left: 20px;
 }
 
 .form {
