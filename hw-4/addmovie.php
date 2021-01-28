@@ -26,12 +26,8 @@ session_start();
         </a>
         
         <span class="login-info"><?php echo "You are logged in as admin ".$_SESSION['username']; ?></span>
-        <a href="addmovie.php">
-            <button class="customBtn">Add Movie</button>
-        </a>
-        <a href="sign.php">
-            <button class="customBtn">Logout</button>
-        </a>
+        <button class="customBtn" onclick="location.href='addmovie.php'">Add Movie</button>
+        <button class="customBtn" onclick="location.href='sign.php'">Logout</button>
         
 
     </div>
