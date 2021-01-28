@@ -24,9 +24,8 @@ session_start();
         </a>
         
         <span class="login-info"><?php echo "You are logged in as user ".$_SESSION['username']; ?></span>
-        <a href="sign.php">
-            <button class="customBtn">Logout</button>
-        </a>
+        <button class="customBtn" onclick="location.href='sign.php'">Logout</button>
+        
     </div>
 
     <?php 
