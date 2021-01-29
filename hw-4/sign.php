@@ -1,3 +1,20 @@
+<?php
+
+session_start();
+
+if(isset($_SESSION['role'])){
+    if($_SESSION['role'] == "admin"){
+        header("location:homeadmin.php");
+    }
+    
+    if($_SESSION['role'] == "user"){
+        header("location:home.php");
+    }
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +30,7 @@
 <?php   
     $message = '';
     include('config.php');
-    session_start();
+    
 
     
         
@@ -35,8 +52,10 @@
                     }else{
                         header("location:home.php");
                     }
+                    session_start();
                     $_SESSION['username'] = $row['username'];
-                }
+                    $_SESSION['role'] = $row['role'];
+                 }
             }else{
                 $message = "<br>Wrong user informations or password";
             }
