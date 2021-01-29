@@ -140,7 +140,12 @@ if(isset($_POST['update_year'])){
 }
 
 if(isset($_POST['update_picture'])){
-    $picture = $_POST['new_picture'];
+    $picture = $_FILES['picture']['name'];
+    $target = "movies-img/".basename($picture);
+
+    if(!move_uploaded_file($_FILES['picture']['tmp_name'], $target)){
+        echo "ERROR";
+    }
 
     $sql = " UPDATE movies SET picture = '$picture' WHERE title = '$movie_tit' ";
 
@@ -198,7 +203,7 @@ if(isset($_POST['update_duration'])){
     </div>
 
     <div class="container edit">
-        <form action="" method="POST">
+        <form action="" method="POST" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="title">Title:</label>
                 <?php echo "<input type=text class=form-control name=new_title value =\"" . $title . "\" required>" ; ?>
@@ -248,8 +253,8 @@ if(isset($_POST['update_duration'])){
             </div>
 
             <div class="form-group">
-                <label for="picture">Picture:</label>
-                <?php echo "<input type=text class=form-control name=new_picture value =\"" . $picture . "\" required>" ; ?>
+                <label for="picture" class="file-upload">Picture:</label>
+                <?php echo "<input type=file name=picture>" ; ?>
                 <button class="update-button" name="update_picture" onclick='return checkedit()'>Update picture</button>
             </div>
 
