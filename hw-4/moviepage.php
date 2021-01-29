@@ -1,6 +1,15 @@
 <?php
 include 'config.php';
 session_start();
+
+if($_SESSION['role'] == "admin"){
+    header("location:homeadmin.php");
+}
+
+if (!isset($_SESSION['username'])) {
+    header("location: sign.php");
+    exit;
+}
 ?>
 
 <!DOCTYPE html>
@@ -24,7 +33,7 @@ session_start();
         </a>
         
         <span class="login-info"><?php echo "You are logged in as user ".$_SESSION['username']; ?></span>
-        <button class="customBtn" onclick="location.href='sign.php'">Logout</button>
+        <button class="customBtn" onclick="location.href='logout.php'">Logout</button>
         
     </div>
 
