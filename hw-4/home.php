@@ -47,12 +47,13 @@ session_start();
     </div>
 
     <div class="container searchbox">
-        <form action="home.php" method="get">
+        <form action="home.php" method="GET">
             <div class="form-group selectbox">
                 <label for="sel1">Search by genre</label>
                 <select class="form-control" id="sel1" name="list">
+                    <option disabled selected>Search movie by genre: </option>
                     <option>Action</option>
-                    <option>adventure</option>
+                    <option>Adventure</option>
                     <option>Animation</option>
                     <option>Comedy</option>
                     <option>Crime</option>
@@ -70,7 +71,7 @@ session_start();
                 </select>
             </div>
             <div class="input-group-append">
-                <button type="submit" class="btn btn-genre btn-search" name="genre-submit">Submit</button>
+                <button type="submit" class="btn btn-genre btn-search" name="genre-submit">Search</button>
             </div>
         </form>
     </div>
@@ -83,9 +84,13 @@ session_start();
             $search = mysqli_real_escape_string($conn, $_GET['search']);
             $movie_qry = "SELECT * FROM movies WHERE title LIKE '%$search%' OR description LIKE '%$search%' OR director LIKE '%$search%' OR actors LIKE '%$search%'";
         }
+        else if(isset($_GET['list'])){
+            $search = mysqli_real_escape_string($conn, $_GET['list']);
+            $movie_qry = "SELECT * FROM movies WHERE genre LIKE '%$search%'";
+        }
         else{
-            $movie_qry = "SELECT * FROM movies"; 
-        } 
+            $movie_qry = "SELECT * FROM movies";
+        }
         $movie_res=mysqli_query($conn, $movie_qry);
         $queryRes = mysqli_num_rows($movie_res);
 
