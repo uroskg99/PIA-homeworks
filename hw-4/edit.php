@@ -1,7 +1,15 @@
-<?php 
-
-include("config.php");
+<?php
+include 'config.php';
 session_start();
+
+if($_SESSION['role'] == "user"){
+    header("location:home.php");
+}
+
+if (!isset($_SESSION['username'])) {
+    header("location: sign.php");
+    exit;
+}
 
 $movie_tit = $_GET['title'];
 $sql = "SELECT * FROM movies WHERE title='$movie_tit'";
@@ -185,7 +193,7 @@ if(isset($_POST['update_duration'])){
         
         <span class="login-info"><?php echo "You are logged in as admin ".$_SESSION['username']; ?></span>
         <button class="customBtn" onclick="location.href='addmovie.php'">Add Movie</button>
-        <button class="customBtn" onclick="location.href='sign.php'">Logout</button>
+        <button class="customBtn" onclick="location.href='logout.php'">Logout</button>
         
     </div>
 
