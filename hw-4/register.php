@@ -1,3 +1,20 @@
+<?php
+
+session_start();
+
+if(isset($_SESSION['role'])){
+    if($_SESSION['role'] == "admin"){
+        header("location:homeadmin.php");
+    }
+    
+    if($_SESSION['role'] == "user"){
+        header("location:home.php");
+    }
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
