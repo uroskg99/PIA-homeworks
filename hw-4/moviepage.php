@@ -58,7 +58,7 @@ if (!isset($_SESSION['username'])) {
         
 
         <div class="side-info">
-            <img class="movie-pic" src=<?php echo $row['picture']; ?> >
+            <img class="movie-pic" src=<?php echo "movies-img/".$row['picture']; ?> >
         
 
 
