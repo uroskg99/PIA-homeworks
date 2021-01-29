@@ -14,11 +14,11 @@ session_start();
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="home2.css">
+    <link rel="stylesheet" type="text/css" href="home.css">
 
 </head>
 <body>
-    <div class="container-fluid header">
+    <div class="container-fluid fixed-top header">
         <a href="home.php">
             <img src="img/imdb-logo.png" class="logo">
         </a>
