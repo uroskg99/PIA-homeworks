@@ -117,7 +117,7 @@ if (!isset($_SESSION['username'])) {
             <div class="container-fluid col-sm-12 movie-box">
              
                 <?php echo "<a href='moviepage.php?title=".$movie_data['title']."'>"; ?>
-                    <img src=<?php echo $movie_data['picture']; ?> class="movie-pic">
+                    <img src=<?php echo "movies-img/".$movie_data['picture']; ?> class="movie-pic">
                 <?php echo "</a>"; ?>
 
                 <?php echo "<a href='moviepage.php?title=".$movie_data['title']."' style='text-decoration-color:white'>"; ?>
