@@ -1,6 +1,15 @@
 <?php
 include 'config.php';
 session_start();
+
+if($_SESSION['role'] == "user"){
+    header("location:home.php");
+}
+
+if (!isset($_SESSION['username'])) {
+    header("location: sign.php");
+    exit;
+}
 ?>
 
 <!DOCTYPE html>
@@ -25,7 +34,7 @@ session_start();
         
         <span class="login-info"><?php echo "You are logged in as admin ".$_SESSION['username']; ?></span>
         <button class="customBtn" onclick="location.href='addmovie.php'">Add Movie</button>
-        <button class="customBtn" onclick="location.href='sign.php'">Logout</button>
+        <button class="customBtn" onclick="location.href='logout.php'">Logout</button>
         
 
     </div>
@@ -59,7 +68,7 @@ session_start();
         
 
         <div class="side-info">
-            <img class="movie-pic" src=<?php echo $row['picture']; ?> >
+            <img class="movie-pic" src=<?php echo "movies-img/".$row['picture']; ?> >
         
 
 
