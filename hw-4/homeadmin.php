@@ -18,7 +18,7 @@ session_start();
 
 </head>
 <body>
-    <div class="container-fluid header">
+    <div class="container-fluid fixed-top header">
         <a href="homeadmin.php">
             <img src="img/imdb-logo.png" class="logo">
         </a>
