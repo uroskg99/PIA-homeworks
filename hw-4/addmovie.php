@@ -43,14 +43,14 @@ if (!isset($_SESSION['username'])) {
 
     <div class="container formSignUp" id="formSignUp">
         <h2>Add Movie</h2>
-        <form action="addmovie.php" method="POST">
+        <form action="addmovie.php" method="POST" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="title">Title:</label>
                 <input type="text" class="form-control" placeholder="Enter title" name="title" required>
             </div>
             <div class="form-group">
                 <label for="description">Shorter description:</label>
-                <textarea class="form-control" name="description" cols="55" rows="5" placeholder="Enter short description" required></textarea>
+                <textarea type="text" class="form-control" name="description" cols="55" rows="5" placeholder="Enter short description" required></textarea>
             </div>
             <div class="form-group">
                 <label for="genre">Genre:</label>
@@ -58,11 +58,11 @@ if (!isset($_SESSION['username'])) {
             </div>
             <div class="form-group">
                 <label for="scenarist">Scenarist:</label>
-                <textarea class="form-control" name="scenarist" cols="55" rows="4" placeholder="Enter scenarist(s)" required></textarea>
+                <textarea type="text" class="form-control" name="scenarist" cols="55" rows="4" placeholder="Enter scenarist(s)" required></textarea>
             </div>
             <div class="form-group">
                 <label for="director">Director:</label>
-                <textarea class="form-control" name="director" cols="55" rows="4" placeholder="Enter director(s)" required></textarea>
+                <textarea type="text" class="form-control" name="director" cols="55" rows="4" placeholder="Enter director(s)" required></textarea>
             </div>
             <div class="form-group">
                 <label for="production">Production:</label>
@@ -70,7 +70,7 @@ if (!isset($_SESSION['username'])) {
             </div>
             <div class="form-group">
                 <label for="actors">List of actors:</label>
-                <textarea class="form-control" name="actors" cols="55" rows="4" placeholder="Enter actors"></textarea>
+                <textarea type="text" class="form-control" name="actors" cols="55" rows="4" placeholder="Enter actors"></textarea>
             </div>
             <div class="form-group">
                 <label for="year">Year:</label>
@@ -78,7 +78,7 @@ if (!isset($_SESSION['username'])) {
             </div>
             <div class="form-group">
                 <label for="picture">Picture:</label>
-                <input type="text" class="form-control" placeholder="Enter picture" name="picture" required>
+                <input type="file" name="picture">
             </div>
             <div class="form-group">
                 <label for="duration">Duration in minutes (example 120min):</label>
@@ -99,8 +99,11 @@ if (!isset($_SESSION['username'])) {
                 $production = $_POST['production'];
                 $actors = $_POST['actors'];
                 $year = $_POST['years'];
-                $picture = $_POST['picture'];
+                $picture = $_FILES['picture']['name'];
+                $target = "movies-img/".basename($picture);
                 $duration = $_POST['duration'];
+
+
 
                 $query_movie = "SELECT title FROM movies";
                 $unique = 0; //user is unique if $unique is 0, else $unique is 1
@@ -117,6 +120,10 @@ if (!isset($_SESSION['username'])) {
                      VALUES ('$title', '$description', '$genre', '$scenarist', '$director', '$production', '$actors', '$year', '$picture', '$duration')";
                     mysqli_query($conn, $query);
                     header("location:homeadmin.php");
+
+                    if(!move_uploaded_file($_FILES['picture']['tmp_name'], $target)){
+                        echo "ERROR";
+                    }
                 }
 
             } 
@@ -130,7 +137,8 @@ if (!isset($_SESSION['username'])) {
                 $production = $_POST['production'];
                 $actors = $_POST['actors'];
                 $year = $_POST['years'];
-                $picture = $_POST['picture'];
+                $picture = $_FILES['picture']['name'];
+                $target = "movies-img/".basename($picture);
                 $duration = $_POST['duration'];
 
                 $query_movie = "SELECT title FROM movies";
@@ -148,6 +156,10 @@ if (!isset($_SESSION['username'])) {
                      VALUES ('$title', '$description', '$genre', '$scenarist', '$director', '$production', '$actors', '$year', '$picture', '$duration')";
                     mysqli_query($conn, $query);
                     header("location:addmovie.php");
+
+                    if(!move_uploaded_file($_FILES['picture']['tmp_name'], $target)){
+                        echo "ERROR";
+                    }
                 }
 
             } 
