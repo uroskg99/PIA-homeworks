@@ -87,53 +87,53 @@ if (!isset($_SESSION['username'])) {
             $msg2 = '';
             $currentRate = 'Enter';
 
-            if (mysqli_num_rows($res_rate) > 0){
-                while($row_rate = mysqli_fetch_assoc($res_rate)){
-                    $sum += $row_rate['rate'];
-                    $n++;
+            
+            while($row_rate = mysqli_fetch_assoc($res_rate)){
+                $sum += $row_rate['rate'];
+                $n++;
 
 
-                    if($row_rate['user'] == $currentUser && $row_rate['title'] == $row['title']){
-                        $msg = "You have already rated this movie, you can edit!";
-                        $currentRate = $row_rate['rate'];
+                if($row_rate['user'] == $currentUser && $row_rate['title'] == $row['title']){
+                    $msg = "You have already rated this movie, you can change your rate!";
+                    $currentRate = $row_rate['rate'];
                     
-                    }
+                }
+            }
+
+            if($n>0){
+                $sumFinal = round(($sum / $n), 2);
+                $msg2 = $sumFinal."/10";
+            }else{
+                $msg2 = "No results";
+            }
+
+            if(isset($_POST['rate'])){
+                $rating = $_POST['rating'];
+
+                $query_check = "SELECT title, user FROM rating";
+                $unique = 0;
+                $result_check = mysqli_query($conn, $query_check);
+                    
+                while($row_check = mysqli_fetch_array($result_check)){
+                    if($title_new == $row_check['title'] && $currentUser == $row_check['user']){
+                        $unique = 1;
+                        break;
+                    }        
                 }
 
-                if($n>0){
-                    $sumFinal = $sum / $n;
-                    $msg2 = $sumFinal."/10";
+                if($unique == 0){
+                    $query_new = "INSERT INTO rating (title,user,rate) VALUES ('$title_new', '$currentUser', '$rating')";
+                    $res = mysqli_query($conn, $query_new);
+                    header("location:home.php");
+
                 }else{
-                    $msg2 = "No results";
+                    $query_new = " UPDATE rating SET rate = '$rating' WHERE title = '$title_new' and user = '$currentUser' ";
+                    $res = mysqli_query($conn, $query_new);
+                    header("location:home.php");
                 }
-
-                if(isset($_POST['rate'])){
-                    $rating = $_POST['rating'];
-
-                    $query_check = "SELECT title, user FROM rating";
-                    $unique = 0;
-                    $result_check = mysqli_query($conn, $query_check);
-                    
-                    while($row_check = mysqli_fetch_array($result_check)){
-                        if($title_new == $row_check['title'] && $currentUser == $row_check['user']){
-                            $unique = 1;
-                            break;
-                        }        
-                    }
-
-                    if($unique == 0){
-                        $query_new = "INSERT INTO rating (title,user,rate) VALUES ('$title_new', '$currentUser', '$rating')";
-                        $res = mysqli_query($conn, $query_new);
-                        header("location:home.php");
-
-                    }else{
-                        $query_new = " UPDATE rating SET rate = '$rating' WHERE title = '$title_new' and user = '$currentUser' ";
-                        $res = mysqli_query($conn, $query_new);
-                        header("location:home.php");
-                    }
 
                 
-                }
+            }
 
 
         ?>
@@ -143,16 +143,16 @@ if (!isset($_SESSION['username'])) {
         <hr>
         <div class="rating">
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-xl-6">
                     <form action="" method="POST">
-                        <button name="rate" onclick='return confirmrate()'>Rate</button>
-                        <span><input type="number" name="rating" value=<?php echo $currentRate; ?> placeholder="Enter Your rate!"></span>
+                    <input class="rate" step=".01" type="number" name="rating" min="1" max="10" value=<?php echo $currentRate; ?> placeholder="Enter Your rate!">
+                        <span><button class="customBtn" name="rate" onclick='return confirmrate()'>Rate</button></span>
                         <br>
                         <?php echo $msg; ?>
                     </form>
                 </div>
-                <div class="col-sm-6">
-                    Rating : <?php echo $msg2; ?> | Number of rates : <?php echo $n; ?>
+                <div class="col-xl-6">
+                    Rating : <span class="bold-class"><?php echo $msg2; ?></span> | Number of rates : <span class="bold-class"><?php echo $n; ?></span>
                 </div>
             </div>
         </div>
@@ -161,10 +161,11 @@ if (!isset($_SESSION['username'])) {
 
     
 
-    <?php
-    }
-    }
-    ?>
+<?php
+    
+}
+
+?>
     
 <script>
     function confirmrate(){
