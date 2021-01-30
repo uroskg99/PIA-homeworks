@@ -98,8 +98,10 @@ body {
 }
 
 .rating {
-    height: 50px;
+    height: 130px;
     background-color: white;
+    padding: 15px;
+    overflow: auto;
 }
 
 hr {
@@ -131,4 +133,12 @@ hr {
 .delete {
     background-color: rgb(197, 83, 83);
     color: white;
+}
+
+.col-sm-6 {
+    font-size: 17px;
+}
+
+.bold-class {
+    font-weight: bold;
 }
