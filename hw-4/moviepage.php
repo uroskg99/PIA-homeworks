@@ -163,6 +163,7 @@ if (!isset($_SESSION['username'])) {
 
     <?php
     }
+    }
     ?>
     
 <script>
