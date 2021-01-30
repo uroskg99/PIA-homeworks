@@ -48,7 +48,9 @@ if (!isset($_SESSION['username'])) {
     $query_res = mysqli_num_rows($result);
 
     while($row = mysqli_fetch_assoc($result)){
-
+        
+        $title_new = $row['title'];
+        
     ?>
 
     <div class="container all-info">
@@ -83,14 +85,48 @@ if (!isset($_SESSION['username'])) {
 
         </div>
 
+        <?php 
+
+        $qry_rate = "SELECT * FROM rating WHERE title = '$title_new' ";
+        $res_rate = mysqli_query($conn, $qry_rate);
+
+        $sum = 0;
+        $n = 0;
+        $currentUser = $_SESSION['username'];
+        $msg = '';
+        $msg2 = '';
+        $currentRate = 'Enter';
+
+
+        while($row_rate = mysqli_fetch_assoc($res_rate)){
+            $sum += $row_rate['rate'];
+            $n++;
+
+
+            if($row_rate['user'] == $currentUser && $row_rate['title'] == $row['title']){
+                $msg = "You have already rate this movie, you can change your rate!";
+                $currentRate = $row_rate['rate'];
+                
+            }
+        }
+
+        if($n>0){
+            $sumFinal = round(($sum / $n), 2);
+            $msg2 = $sumFinal."/10";
+        }else{
+            $msg2 = "No results";
+        }
+
+        ?>
+
         <hr>
         <div class="rating">
             <div class="row">
-                <div class="col-sm-6">
-                    Ocene
+                <div class="col-xl-6">
+                    You can't rate movie as admin!
                 </div>
-                <div class="col-sm-6">
-                    Ukupne ocene
+                <div class="col-xl-6">
+                    Rating : <span class="bold-class"><?php echo $msg2; ?></span> | Number of rates : <span class="bold-class"><?php echo $n; ?></span>
                 </div>
             </div>
         </div>
@@ -98,15 +134,18 @@ if (!isset($_SESSION['username'])) {
     </div>
 
     
-
 <?php
-}
+
+} 
+
 ?>
     
 <script>
+
     function checkdelete(){
         return confirm('Please, confirm if You are sure You want to delete this movie');
     }
+
 </script>
 
 </body>
