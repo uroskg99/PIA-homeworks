@@ -145,7 +145,7 @@ if (!isset($_SESSION['username'])) {
             <div class="row">
                 <div class="col-xl-6">
                     <form action="" method="POST">
-                    <input class="rate" step=".01" type="number" name="rating" min="1" max="10" value=<?php echo $currentRate; ?> placeholder="Enter Your rate!">
+                    <input class="rate" step=".1" type="number" name="rating" min="1" max="10" value=<?php echo $currentRate; ?> placeholder="Enter Your rate!">
                         <span><button class="customBtn" name="rate" onclick='return confirmrate()'>Rate</button></span>
                         <br>
                         <?php echo $msg; ?>
